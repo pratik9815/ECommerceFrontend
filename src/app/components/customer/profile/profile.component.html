@@ -1,0 +1,45 @@
+<div>
+    <h2 class="ms-3">My Order</h2>
+
+    <table class="table ms-3 mt-4" style="width:780px">
+        <thead>
+            <tr>
+                <th style="width: 20px">S.N</th>
+                <th style="width: 300px">Order Id</th>
+                <th style="width: 20px;">Total Amount(Rs.)</th>
+                <th style="width:100px">Status</th>
+                <th style="width:100px">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of order; let i = index">
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.amount}}</td>
+                <td>InProgress</td>
+                <td>
+                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                    <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
+                        <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade show" role="dialog" *ngIf="orderDetailsPopUpModal" id="orderDetailsModal"
+    style="display:block;background: rgba(0, 0, 0, 0.7)">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Order details</h1>
+                <button type="button" class="btn-close" (click)="close()"></button>
+            </div>
+            <div class="modal-body">
+                <app-order-details [order-details]="orderDetails"></app-order-details>
+            </div>
+        </div>
+    </div>
+</div>

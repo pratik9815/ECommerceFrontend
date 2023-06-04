@@ -1,0 +1,54 @@
+
+  <div class='formContainer'>
+    <div class="d-flex something">
+
+      <div id="grad"  style="height:500px;width:350px;">
+        <!-- <img id="image" src="al.jpg"> -->
+      </div>  
+
+      <form [formGroup]="loginForm" class="loginForm">
+        <div class="division " style="height:500px;width:350px">
+          <h1 class="text-center mt-5">Login</h1>
+          <div class="input-container m-3">
+            <label for="username">Username:</label>
+            <div class="input-field-container">
+              <i class="bi bi-person-circle icon"></i>
+              <input id="username" type="text" placeholder='username' formControlName="username"
+                [ngClass]="{ 'is-invalid': submitted && getFormControl.username.errors }" class="form-control" />
+              <div *ngIf="submitted && getFormControl.username.errors?.required"
+                class="error invalid-feedback text-danger ">
+                <div *ngIf="getFormControl.username.errors?.required">Username required.</div>
+              </div>
+            </div>
+            <label for="password">Password:</label>
+            <div class="input-field-container">
+              <i class="bi bi-lock-fill icon"></i>
+              <input id="password" [type]="changeType? 'password':'text'" placeholder='password' formControlName="password"
+                [ngClass]="{ 'is-invalid': submitted && getFormControl.password.errors }" class="form-control" />
+              <i (click)="viewpass()" [ngClass]="visible? 'bi bi-eye-fill':'bi bi-eye-slash-fill'"></i>
+              <div *ngIf="submitted && getFormControl.password.errors?.minlength"
+                class="invalid-feedback text-danger error">
+                <div *ngIf="getFormControl.password.errors?.minlength">
+                  Min 8 characters required
+                </div>
+              </div>
+              <div *ngIf="submitted && getFormControl.password.errors" class="invalid-feedback text-danger error">
+                <div *ngIf="getFormControl.password.errors?.required">Password
+                  required</div>
+              </div>
+            </div>
+            <button class="btn btn-primary" (click)="onLogin()">Login</button>
+            <div class="text-center mt-3">Or Register
+               <a class="link-primary" routerLink="/signin">Here</a> 
+              </div>
+            <!-- <div>
+              <button class="btn signin-button" (click)="onSignin()">Register</button>
+            </div> -->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+

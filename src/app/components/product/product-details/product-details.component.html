@@ -1,0 +1,82 @@
+<h1 class="mx-4">Product details</h1>
+
+<div class="row" *ngIf="productData">
+
+    <form class="col-sm-4 mx-4 my-4">
+        <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let item of productData.imageLists; index as i">
+                <div class="picsum-img-wrapper" style="height:280px;">
+                    <img [src]="item.imageUrl" alt="Random first slide" style="height:280px"> 
+                </div>
+                <div class="carousel-caption">
+
+                </div>
+            </ng-template>
+        </ngb-carousel>
+        <div class="image_caption" style="font-size: x-small;">Slide for more images</div>
+    </form>
+ 
+    <div class="mx-4 col-sm-4">
+        <h4 style="font-weight:bold">{{productData.name}}</h4>
+
+        <hr>
+        <div><span style="font-weight:bold" class="m-0">Description:</span>
+           <p style="margin-bottom:2px">{{productData.description}}</p> 
+        </div>
+        <div>
+            <span style="font-weight:bold" class="m-0">Price:</span>
+            {{productData.price}} 
+        </div>
+
+        <div><span style="font-weight:bold" class="m-0"> Quantity: </span>
+            {{productData.quantity}}
+        </div>
+        <div>
+            <span style="font-weight:bold" class="m-0">Product Status:</span>
+            {{productStatus[productData.productStatus].name}}
+        </div>
+        <div><span style="font-weight:bold" class="m-0">Category:</span>
+            <div *ngFor="let product of productData.categories" class="m-0">{{product.categoryName}}</div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-4 my-2">
+                <button type="button" class="btn btn-warning" (click)="addCart(productData)">Add to cart</button>
+            </div>
+            <div class="counter my-2 col-sm-3">
+                <button (click)="decrement()" class="btn btn-primary count">-</button>
+                <span class="badge bg-secondary"><strong>Quantity:</strong> {{ count }}</span>
+                <button (click)="increment()" class="btn btn-primary count">+</button>
+            </div>
+        </div>
+    </div>
+</div><hr>
+
+<!-- Related product list -->
+<!-- <div class="ps-2 pt-3">
+    <h2 class="text-center">Related Products</h2>
+    <div class="m-4">
+        <div class="row" style="margin:0 80px 0 80px">
+            <div *ngFor="let item of productList" class="col-sm-4">
+                <div class="single-product pt-3">
+                    <div class="product-f-image">
+                        <img class="img" src="{{item.img.imageUrl}}" alt="">
+                        <div class="product-hover"> -->
+                            <!-- <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a> -->
+                            <!-- <a href="product-details/{{item.id}}" class="view-details-link"><i class="fa fa-link"></i> See details</a> -->
+                            <!-- <a [routerLink]="'/product-details/' + item.id"  class="view-details-link"><i class="fa fa-link"></i> See details</a>
+
+                        </div>
+                    </div>      
+                    <h4>{{item.name}}</h4>
+                    <div class="product-carousel-price">
+                        <ins>Rs: {{item.price}}</ins>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div *ngIf="categoryId.length != 0">
+    <app-related-product [categoryId]="categoryId"></app-related-product>
+</div>

@@ -1,0 +1,31 @@
+<div *ngIf="productLength > 0">
+    <div class="h3 ms-3 pt-2">
+        {{productList[0].categoryName}}
+    </div>
+    <div class="m-4">
+
+        <div class="row" *ngFor="let item of productList; let i = index" style="margin:0 60px 0 60px">
+            <div class=" pt-3 d-flex">
+                <div class=" single-product product-f-image" style="height:220px;width:fit-content">
+                    <img class="img" src="{{item.img.imageUrl}}" alt="" style="height:250px;width:400px">
+                    <div class="product-hover">
+                        <!-- <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a> -->
+                        <a routerLink="/product-details/{{item.id}}"  class="view-details-link"><i
+                                class="fa fa-link"></i> See details</a>
+                    </div>
+                </div>
+                <div class="ms-5">
+                    <h4>{{item.name}}</h4>
+                    <div class="product-carousel-price">
+                        <ins>Rs: {{item.price}}</ins>
+                    </div>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

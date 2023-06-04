@@ -1,0 +1,118 @@
+<header class="header shop">
+
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-12 col-12">
+          <!-- Top Left -->
+          <div class="top-left">
+            <ul class="list-main">
+              <li><i class="ti-headphone-alt"></i> +123456789</li>
+              <li><i class="ti-email"></i> support@ecommerce.com</li>
+            </ul>
+          </div>
+          <!--/ End Top Left -->
+        </div>
+        <div class="col-lg-7 col-md-12 col-12">
+          <!-- Top Right -->
+          <div class="right-content">
+            <ul class="list-main">
+              <li><i class="bi bi-geo-alt"></i>Kankai-6, Jhapa, Nepal</li>
+              <li><i class="bi bi-alarm"></i> <a type="button">Daily deal</a></li>
+
+
+              <li>
+                <ng-container *ngIf="isLoggedIn$ | async; else login">
+                  
+                  <div class="dropdown account">
+                    <i class="bi bi-person"></i>
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">My account</a>
+                    <ul class="dropdown-menu">
+                      <li routerLink="/profile"><a class="dropdown-item account-item">Profile</a></li>
+                      <li (click)="onLogout()"><a class="dropdown-item account-item">Logout</a></li>  
+                    </ul>
+                  </div>
+
+                </ng-container>
+              </li>
+
+              <li>
+                <ng-template #login>
+                  <i class="bi bi-power"></i>
+                  <a href="login">Login</a>
+                </ng-template>
+              </li>
+            </ul>
+          </div>
+          <!-- End Top Right -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Topbar -->
+
+
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand h3 mx-3" routerLink="">ECommerce</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+          <li class="nav-item mx-3">
+            <div class="dropdown mt-0 ">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                style="background-color: inherit;">
+                Categories
+              </button>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item" *ngFor="let item of categoryList;let i = index;" (click)="onChange(item.id)">
+                  <a>{{item.categoryName}}</a>
+                </li>
+              </ul>
+            </div>
+
+          </li>
+
+          <li class="nav-item" style="width:690px;margin-left:49px">
+            <div class="input-group">
+              <input type="text" class="form-control" style="line-height: 0.5;">
+              <span class="input-group-text" id="basic-addon2" type="button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
+          </li>
+        </ul>
+
+        <button class="btn me-5" routerLink="/cart">
+          <i class="fa-solid fa-cart-plus" style="font-size: 20px;" routerLink="/cart"></i>
+          <div style="font-size: 10px" class="badge bg-danger">{{count}}</div>
+        </button>
+
+        <!-- <ng-container *ngIf="isLoggedIn$ | async; else login">
+          <div class=" dropdown me-2">
+            <a class=" btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>User
+            </a>
+            <ul class="dropdown-menu" style=" min-width: 105px">
+              <li type="button" routerLink="/profile"><a class="dropdown-item"> Profile </a></li>
+              <li type="button" (click)="onLogout()"><a class="dropdown-item">Logout</a></li>
+            </ul>
+          </div>
+        </ng-container> -->
+        <!-- <ng-template #login>
+          <div class="me-4">
+            <button class="btn btn-warning" type="button" routerLink="/login">Login</button>
+          </div>
+        </ng-template> -->
+      </div>
+    </div>
+  </nav>
+</header>

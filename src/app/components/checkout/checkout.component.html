@@ -1,0 +1,98 @@
+<div>
+    <div class="checkout text-center">
+        <h1 class="pt-2 ">Checkout</h1>
+    </div>
+    <form [formGroup]="checkOutForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+            <div class="col-lg-3"></div>
+            <div class="col-md-3">
+                <label for="shippingaddress"><strong>ShippingAddress</strong> </label>
+                <input id="shippingaddress" type="text" class="form-control" formControlName="shippingAddress"
+                    [ngClass]="{ 'is-invalid': submitted && getFormControl.shippingAddress.errors }"
+                    placeholder="Enter shipping address">
+
+                <div *ngIf="submitted && getFormControl.shippingAddress.errors?.required"
+                    class="error invalid-feedback text-danger ">
+                    <div *ngIf="getFormControl.shippingAddress.errors?.required">Shipping address required.</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="ordersaddress"><strong>OrdersAddress</strong> </label>
+                <input id="ordersaddress" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && getFormControl.orderAddress.errors }"
+                    placeholder="Enter order address" formControlName="orderAddress">
+                <div *ngIf="submitted && getFormControl.orderAddress.errors?.required"
+                    class="error invalid-feedback text-danger ">
+                    <div *ngIf="getFormControl.orderAddress.errors?.required">Order address required.</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <label for="orderemail"><strong>OrderEmail</strong> </label>
+                <input id="orderemail" type="text" class="form-control" formControlName="orderEmail"
+                    [ngClass]="{ 'is-invalid': submitted && getFormControl.orderEmail.errors }"
+                    placeholder="Enter order email">
+                <div *ngIf="submitted && getFormControl.orderEmail.errors?.required"
+                    class="error invalid-feedback text-danger ">
+                    <div *ngIf="getFormControl.orderEmail.errors?.required">Email required.</div>
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <label for="phoneNumber"><strong>PhoneNumber</strong> </label>
+                <input id="phoneNumber" type="text" class="form-control" formControlName="phoneNumber"
+                    [ngClass]="{ 'is-invalid': submitted && getFormControl.phoneNumber.errors }"
+                    placeholder="Enter phonenumber">
+                <div *ngIf="submitted && getFormControl.phoneNumber.errors?.required"
+                    class="error invalid-feedback text-danger ">
+                    <div *ngIf="getFormControl.phoneNumber.errors?.required">Phone number required.</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+                <strong class="fs-5"> Total amount : {{grandTotal}}</strong> <br>
+                <strong class="fs-5">Payment method : Cash on delivery!</strong>
+            </div>
+            <div class="col-sm-1 ms-4"></div>
+            <div class="col-sm-2 ms-5">
+                <button class="btn btn-primary" type="submit">Order Now</button>
+            </div>
+        </div>
+    </form>
+<hr>
+    <div *ngIf="cartItems.length != 0">
+        <h2 class="ms-4">My Orders:</h2>
+
+        <div>   
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product name :</th>
+                        <th>Quantity :</th>
+                        <th>Total price :</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of cartItems">
+                    <tr>
+                        <td>{{item.name}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.price * item.quantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+           <!-- <span>Product name : {{item.name}} </span>
+           <span>Quantity : {{item.quantity}} </span> 
+           <span>Total price : {{item.price * item.quantity}} </span>  -->
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,71 @@
+.img {
+  height: 210px;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+/* slides */
+.slider {
+
+  position: relative;
+}
+
+.slide {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in;
+
+
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -25%);
+  right: 32px;
+  font-size: 45px;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -25%);
+  left: 32px;
+  font-size: 45px;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+}
+
+
+.slider {
+  position: relative;
+}
+
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.dot:hover {
+  color: #875555;
+}

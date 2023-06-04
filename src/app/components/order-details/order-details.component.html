@@ -1,0 +1,19 @@
+
+<table class="table" *ngIf="productData">
+    <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Product name</th>
+            <th>Unit price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of productData; let i = index">
+        <tr>
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{orderDetails[i].quantity}}</td>
+        </tr>
+    </tbody>
+</table>

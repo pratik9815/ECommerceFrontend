@@ -1,0 +1,83 @@
+    div.error {
+      font-size: medium;
+      position: absolute;
+      top: 81%;
+    }
+    button{
+      width: 100%;
+    }
+
+    button:hover {
+      cursor: pointer;
+      background-color: #214d5c;
+    }
+
+    label {
+      color: rgb(0, 0, 0);
+    }
+    #grad {
+      background-image: linear-gradient(rgb(172, 226, 218), rgb(44, 131, 112));
+      /* background-image: url('src/assets/al.jpg'); */
+      /* background-size: 900px 500px;
+      background-repeat: no-repeat;
+      background-position: 50%; */
+      overflow: hidden;
+    }
+
+    .something{
+      box-shadow: 0 0 8px 3px;
+      /* border-radius: 10px; */
+    }
+    .loginForm {
+      display: flex;
+      justify-content: center;
+      background-color: #d7dfe6;
+    }
+
+    .formContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 82vh;
+      overflow: hidden;
+    }
+
+    .input-container {
+      position: relative;
+      top: 10px;
+    }
+
+    input {
+      margin-bottom: 20px;
+      padding: 10px 35px;
+      width: 100%;
+      border: 1px solid rgb(39, 62, 69);  
+      border-radius: 5px;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+
+    i.bi-eye-fill,
+    i.bi-eye-slash-fill {
+      position: absolute;
+      top: 24%;
+      right: 2%;
+      font-size: 18px;
+      color: black;
+    }
+
+    .input-field-container {
+      position: relative;
+    }
+
+    .icon {
+      display: block;
+      position: absolute;
+      top: 53%;
+      left: 14px;
+      transform: translateY(-50%);
+      z-index: 99;
+    }

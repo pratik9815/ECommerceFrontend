@@ -1,0 +1,138 @@
+.btn{
+    border: none;
+}
+a.btn:hover{
+    background-color: rgb(195, 213, 251);
+}
+.nav-item{
+    background-color: inherit;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+/* .dropdown .dropdown-toggle:active{
+    pointer-events: none;
+} */
+
+.dropdown-item:hover{
+    cursor: pointer;
+}
+
+.account li{
+    width: 100%;
+}
+.account li{
+    padding: 0 0 0 13px !important;
+}
+
+
+
+.topbar a{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+.topbar {
+	background-color: #fff;
+	border-bottom: 1px solid #e2e2e2;
+	padding: 12px 0;
+}
+.header.v3 .navbar-expand-lg .navbar-collapse{
+	display:block !important;
+	background:#333;
+}
+.header .nav li a i {
+	margin-left: 6px;
+	font-size: 10px;
+}
+
+/* Topbar Left Nav */
+
+.header.shop .top-left .list-main li:first-child{
+	padding-left:0;
+}
+.header.shop .top-left .list-main li i{
+	display: inline-block;
+	margin-right: 4px;
+	font-size: 15px;
+	color: #F7941D;
+	position: relative;
+	top: 3px;
+}
+.header.shop .right-content{
+	float:right;
+}
+.header.shop .list-main li {
+	display: inline-block;
+	color: #333;
+	font-size: 13px;
+	font-weight: 500;
+	border-right: 1px solid #f0f0f0;
+	padding: 0px 13px;
+}
+.header.shop .list-main li i {
+	display: inline-block;
+	margin-right: 4px;
+	font-size: 15px;
+	color: #F7941D;
+	position: relative;
+	top: 1px;
+}
+.header.shop .list-main li:last-child{
+	padding-right:0;
+	border:none;
+}
+.header.shop .list-main li a{
+	color:#333;
+}
+.header.shop .list-main li a:hover{
+	color:#F7941D;
+}
+.header.shop .nav li {
+	margin-right: 40px;
+	float: left;
+	position: relative;
+}
+.header.shop .nav li {
+	margin-right: 38px;
+	position: relative;
+}
+.header.shop .nav li:last-child {
+	margin: 0 !important;
+}
+.header.shop .nav li .new {
+	background: #F7941D;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 10px;
+	padding: 0px 9px;
+	position: absolute;
+	left: 0;
+	top: 6px;
+	font-weight: 500;
+}
+.header.shop .nav li .new::before {
+	position: absolute;
+	content: "";
+	left: 4px;
+	bottom: -8px;
+	border: 4px solid #F7941D;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.header.shop .topbar p {
+	color: #ccc;
+}
+.header.shop .topbar .login a {
+	color: #F7941D;
+}
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0rem;
+}

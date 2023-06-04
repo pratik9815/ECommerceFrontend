@@ -1,0 +1,146 @@
+<div class="body" >
+    <div class="formContainer pb-5">
+        <form [formGroup]="signinForm" class="signinForm">
+    
+            <h1 class="text-center pt-3">Register</h1>
+            <div class="input-container row mt-1">
+    
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="fullName">Full Name:</label>
+                        <div class="input-field-container">
+                            <i class="fa-solid fa-user icon"></i>
+                            <input id="fullName" type="text" placeholder='fullname' formControlName="fullName"
+                                [ngClass]="{ 'is-invalid': submitted && getFormControl.fullName.errors }"
+                                class="form-control" />
+                            <div *ngIf="submitted && getFormControl.fullName.errors?.required"
+                                class="error invalid-feedback text-danger ">
+                                <div *ngIf="getFormControl.fullName.errors?.required">FulllName required.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="email">Email:</label>
+                        <div class="input-field-container">
+                            <i class="fa-solid fa-envelope icon"></i>
+                            <input id="email" type="text" placeholder='email' formControlName="email"
+                                [ngClass]="{ 'is-invalid': submitted && getFormControl.email.errors }"
+                                class="form-control" />
+                            <div *ngIf="submitted && getFormControl.email.errors?.required"
+                                class="error invalid-feedback text-danger ">
+                                <div *ngIf="getFormControl.email.errors?.required">Email required.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="gender">Gender:</label>
+                        <div class="input-field-container">
+                            <ng-select [items]="gender" bindLabel="name" bindValue="id" formControlName="gender">
+                            </ng-select>
+                            <div *ngIf="submitted && getFormControl.gender.errors?.required"
+                                class="error invalid-feedback text-danger ">
+                                <div *ngIf="getFormControl.gender.errors?.required">Gender required.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="address">Address:</label>
+                        <div class="input-field-container">
+                            <i class="fa-solid fa-address-book icon"></i>
+                            <input id="address" type="text" placeholder='address' formControlName="address"
+                                [ngClass]="{ 'is-invalid': submitted && getFormControl.address.errors }"
+                                class="form-control" />
+                            <div *ngIf="submitted && getFormControl.address.errors?.required"
+                                class="error invalid-feedback text-danger ">
+                                <div *ngIf="getFormControl.address.errors?.required">Address required.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="dob">Date of birth:</label>
+                        <div class="input-field-container">
+                             <i class="fa-solid fa-calendar-days icon" style="top:23px"></i>
+    
+                            <input type="date" min="1910-01-01" max="2023-12-31" formControlName="dob" class="ng-select"    
+                            [ngClass]="{ 'is-invalid': submitted && getFormControl.dob.errors }"/>
+    
+    
+                            <div *ngIf="submitted && getFormControl.dob.errors?.required"
+                                class="error invalid-feedback text-danger ">
+                                <div *ngIf="getFormControl.dob.errors?.required">DOB required.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <div class="input-field-container">
+                            <i class="fa-solid fa-phone icon"></i>
+                            <input id="phoneNumber" type="text" placeholder='phone number' formControlName="phoneNumber"
+                                [ngClass]="{ 'is-invalid': submitted && getFormControl.phoneNumber.errors }"
+                                class="form-control" />
+                            <div *ngIf="submitted && getFormControl.phoneNumber.errors?.required"
+                                class="error invalid-feedback text-danger ">
+                                <div *ngIf="getFormControl.phoneNumber.errors?.required">Phone number required.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="username">Username:</label>
+                        <div class="input-field-container">
+                            <i class="fa-solid fa-user icon"></i>
+                            <input id="username" type="text" placeholder='username' formControlName="userName"
+                                [ngClass]="{ 'is-invalid': submitted && getFormControl.userName.errors }"
+                                class="form-control" />
+                            <div *ngIf="submitted && getFormControl.userName.errors?.required"
+                                class="error invalid-feedback text-danger ">
+                                <div *ngIf="getFormControl.userName.errors?.required">Username required.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="password">Password:</label>
+                        <div class="input-field-container">
+                            <i class="fa-solid fa-lock icon"></i>
+                            <input id="password" [type]="changeType? 'password':'text'" placeholder='password'
+                                formControlName="password"
+                                [ngClass]="{ 'is-invalid': submitted && getFormControl.password.errors }"
+                                class="form-control" />
+                            <i (click)="viewpass()" [ngClass]="visible? 'bi bi-eye-fill':'bi bi-eye-slash-fill'"></i>
+                            <div *ngIf="submitted && getFormControl.password.errors?.minlength"
+                          class="invalid-feedback text-danger error">
+                          <div *ngIf="getFormControl.password.errors?.minlength">
+                            Min 8 characters required
+                          </div>
+                        </div>
+                            <div *ngIf="submitted && getFormControl.password.errors"
+                                class="invalid-feedback text-danger error">
+                                <div *ngIf="getFormControl.password.errors?.required">Password
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" (click)="onSignIn()"
+                    style="width: 100px; margin-left: 13px;">Register</button>
+    
+                <!-- <div>
+                <button class="btn signin-button" (click)="onSignin()">Register</button>
+              </div> -->
+            </div>
+        </form>
+    </div>
+    
+</div>
+

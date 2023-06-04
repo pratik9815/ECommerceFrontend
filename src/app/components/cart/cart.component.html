@@ -1,0 +1,56 @@
+<div *ngIf="product.length !=0" style="min-height: 92vh;">
+    <div class="container" >
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" style="width:12%">Quantity</th>
+                    <th scope="col" style="width:12%">Price</th>
+                    <th scope="col" style="width:10%">Total</th>
+                    <th scope="col" style="width:10%">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let item of product;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.quantity }}</td>
+                    <td>Rs.{{item.price}}</td>
+                    <td>Rs.{{item.price * item.quantity}}</td>
+                    <td>
+                        <button (click)="removeItem(item)" class="btn btn-danger"><i
+                                class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr class="my-2">
+                    <td colspan="3"></td>
+                    <td>
+                        <button class="btn btn-danger" (click)="emptyCart()">Empty cart</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" routerLink='/'>Shop More</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" routerLink="/checkout">Checkout</button>
+                    </td>
+                    <td>
+                        <strong> Grand Total : Rs. {{grandTotal}}</strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="product.length == 0" > 
+  <div style="height: 91vh;"  class="d-flex justify-content-center align-items-center">
+    <div class="mb-5">
+        Your cart is empty <br>
+        <button class="btn btn-warning" style="width: 125px;" routerLink="">Shop More</button>
+    </div>
+  </div>
+</div>

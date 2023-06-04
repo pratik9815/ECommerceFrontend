@@ -1,0 +1,10 @@
+.header{
+/* min-height:9%; */
+background-color: rgb(235, 247, 229);
+}
+
+.content{
+    /* min-height: 91vh; */
+    background-color: aliceblue;
+    overflow: hidden;
+}

@@ -1,0 +1,46 @@
+<div class="row" style="background-color: #b7c9c9;height:430px" *ngIf="slides">
+  <div class="col-sm-3">
+  </div>
+
+  <div class="col-sm-6 mt-2 mb-2">
+    <!-- <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let item of image; index as i">
+          <div class="picsum-img-wrapper" style="height:fit-content; width:fit-content">
+            <img [src]="item.imageUrl" alt="Random first slide" style="height:400px; width:1080px">
+          </div>
+        </ng-template>
+      </ngb-carousel>  -->
+
+    <div class="slider" >
+      <div>
+        <div (click)="goToPrevious()" class="leftArrow">❰</div>
+        <div (click)="goToNext()" class="rightArrow">❱</div>
+      </div>
+      <div>
+        <div class="slide" [ngStyle]="{ 'background-image': getCurrentSlideUrl() }">
+        </div>
+      </div>
+
+      <div class="dotsContainer">
+        <div *ngFor="let slide of slides; let slideIndex = index" class="dot" (click)="goToSlide(slideIndex)">
+          ●
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="col-sm-2" style="padding:0">
+  </div>
+</div>
+
+<div class="product-list-wrapper">
+  <app-product-list></app-product-list>
+</div>
+
+
+
+
+
+     
