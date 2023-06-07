@@ -33,7 +33,7 @@
         </div>
         <div>
             <span style="font-weight:bold" class="m-0">Product Status:</span>
-            {{productStatus[productData.productStatus].name}}
+            {{productStatus[productData.productStatus].name}} <span *ngIf="productData.quantity < 10" style="color:red;">Limited stock left!</span>
         </div>
         <div><span style="font-weight:bold" class="m-0">Category:</span>
             <div *ngFor="let product of productData.categories" class="m-0">{{product.categoryName}}</div>

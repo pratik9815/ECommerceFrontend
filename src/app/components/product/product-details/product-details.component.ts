@@ -38,7 +38,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
               private _productService:ProductService,
               private _cartService:CartService,
               private _categoryService: CategoryService,
-              private _router:Router) { 
+              private _router:Router,
+              private _toastrService:ToastrService) { 
                 // this._router.routeReuseStrategy.shouldReuseRoute = () => false;
               }
 
@@ -79,13 +80,22 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   addCart(products:any)
   {
-    const modifiedProduct = JSON.parse(JSON.stringify(products));
-    const originalQuantity = this.productData.quantity;
-    modifiedProduct.quantity = this.count;
-    
-    this._cartService.addToCart(modifiedProduct);
-    const updatedQuantity = originalQuantity - this.count;
-    this.productData.quantity = updatedQuantity;
+
+      const modifiedProduct = JSON.parse(JSON.stringify(products));
+      const originalQuantity = this.productData.quantity;
+
+      if(originalQuantity > this.count)
+      {
+        modifiedProduct.quantity = this.count;
+        this._cartService.addToCart(modifiedProduct);
+        const updatedQuantity = originalQuantity - this.count;
+        this.productData.quantity = updatedQuantity;
+      }
+      else{
+        this._toastrService.error("Please select valid product quanity!")
+      }
+
+
   }
   ngOnDestroy(): void {
     if(this.dataSubscription){

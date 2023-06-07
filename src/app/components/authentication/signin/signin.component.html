@@ -39,7 +39,7 @@
                     <div class="col-sm-6">
                         <label for="gender">Gender:</label>
                         <div class="input-field-container">
-                            <ng-select [items]="gender" bindLabel="name" bindValue="id" formControlName="gender">
+                            <ng-select [items]="gender" bindLabel="name" bindValue="id" formControlName="gender" class="custom" [searchable]=false [clearable]=false>
                             </ng-select>
                             <div *ngIf="submitted && getFormControl.gender.errors?.required"
                                 class="error invalid-feedback text-danger ">
@@ -133,11 +133,7 @@
                     </div>
                 </div>
                 <button class="btn btn-primary" (click)="onSignIn()"
-                    style="width: 100px; margin-left: 13px;">Register</button>
-    
-                <!-- <div>
-                <button class="btn signin-button" (click)="onSignin()">Register</button>
-              </div> -->
+                    style="width: 92%; margin-left: 13px;">Register</button>
             </div>
         </form>
     </div>

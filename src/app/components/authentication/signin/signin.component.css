@@ -1,6 +1,7 @@
 .body{
   /* background-color: rgb(164, 164, 238); */
-  background-image: linear-gradient(rgb(196 236 211), rgb(161 180 183));
+  /* background-image: linear-gradient(rgb(196 236 211), rgb(161 180 183)); */
+  background-color: inherit;
 }
 
 .formContainer{
@@ -37,7 +38,7 @@
   div.error {
     font-size: medium;
     position: absolute;
-    /* top: 89%; */
+    top: 89%;
   }
   i.bi-eye-fill,
   i.bi-eye-slash-fill {
@@ -47,3 +48,11 @@
     font-size: 18px;
     color: black;
   }
+
+
+
+  .ng-select.custom ::ng-deep .ng-select-container  {  
+    min-height: 47px;
+    border-radius: 5px;
+    border:1px solid;
+}

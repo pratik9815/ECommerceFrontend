@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -17,43 +18,39 @@ export class AuthService {
 
   private _customer: CustomerInfo = new CustomerInfo();
 
-  user:CustomerInfo = new CustomerInfo();
+  user: CustomerInfo = new CustomerInfo();
 
 
-  constructor(private _httpClient:HttpClient,private _toastrService:ToastrService) {
+  constructor(private _httpClient: HttpClient, private _toastrService: ToastrService) {
     const token = localStorage.getItem('token');
     this._isLoggedIn$.next(!!token);
     this.user = this.getUser(this.GetToken())
-   }
+  }
 
-   GetToken(): any
-   {
-     return localStorage.getItem('token');
-   }
+  GetToken(): any {
+    return localStorage.getItem('token');
+  }
 
-  onLogin(authenticateRequest:any)
-  {
-    return this._httpClient.post(this.apiUrl+'autheticate-user',authenticateRequest).pipe(
-      tap((res:any)=>{
+  onLogin(authenticateRequest: any) {
+    return this._httpClient.post(this.apiUrl + 'autheticate-user', authenticateRequest).pipe(
+      tap((res: any) => {
         this._isLoggedIn$.next(true)
-        localStorage.setItem('token',res.token as string);  
+        localStorage.setItem('token', res.token as string);
         this.user = this.getUser(this.GetToken())
 
       })
     );
   }
-  onLogout()
-  {
+  onLogout() {
     return this._httpClient.post(this.apiUrl + 'logout', null).pipe(
       tap((res: any) => {
         this._isLoggedIn$.next(false);
-      }) 
+      })
     );
   }
 
-  onSignIn(body:any)
-  {
-    return this._httpClient.post(this.apiUrl+'create-user',body,{responseType:'text'});
+  onSignIn(body: any) {
+    return this._httpClient.post(this.apiUrl + 'create-user', body, { responseType: 'text' });
   }
 
   private getUser(token: string): any {
@@ -70,11 +67,23 @@ export class AuthService {
   }
 
   public showLoginPageIfTokenExpries(): void {
-    if (this.isTokenExpired()) {
-      localStorage.removeItem('token'); 
-      this._isLoggedIn$.next(false); // push to subscribers of observable
-     // this._toastrService.info('You session has expired. Please login again.', 'Info');
 
+    const token = localStorage.getItem('token');
+    if (token == null) {
+      // const date = this.getTokenExpirationDate();
+      // console.log(date);
+    }
+
+    else if (this.isTokenExpired()) {
+      this.onLogout().subscribe({
+        next: res => {
+          localStorage.removeItem('token');
+          this._toastrService.info('You session has expired. Please login again.', 'Info');
+        }
+      })
+      localStorage.removeItem('token');
+      this._isLoggedIn$.next(false); // push to subscribers of observable
+      // this._toastrService.info('You session has expired. Please login again.', 'Info');
     }
     else
       this._isLoggedIn$.next(true);  // push to subscribers of observable
@@ -106,7 +115,7 @@ export class AuthService {
   }
 
 
- 
+
 }
 export class CustomerInfo {
   userName?: string | undefined;
@@ -116,5 +125,5 @@ export class CustomerInfo {
   email?: string | undefined;
   id?: string | undefined;
   usertype?: string | undefined;
-  customerId?:string |undefined;
+  customerId?: string | undefined;
 }

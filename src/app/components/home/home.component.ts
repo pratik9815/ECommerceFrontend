@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   getCarouselImage() {
     this._carouselService.getCarouselImage().subscribe({
       next: (res: any) => {
@@ -45,10 +44,14 @@ export class HomeComponent implements OnInit {
   }
 
   goToNext() {
-    const isLastSlide = this.currentIndex === this.slides.length - 1;
-    const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
-    this.resetTimer();
-    this.currentIndex = newIndex;
+    if(this.slides)
+    {
+      const isLastSlide = this.currentIndex === this.slides.length - 1;
+      const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
+      this.resetTimer();
+      this.currentIndex = newIndex;
+    }
+
   }
 
   getCurrentSlideUrl() {

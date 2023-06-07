@@ -1,7 +1,7 @@
     div.error {
       font-size: medium;
       position: absolute;
-      top: 81%;
+      top: 88%;
     }
     button{
       width: 100%;
@@ -15,31 +15,20 @@
     label {
       color: rgb(0, 0, 0);
     }
-    #grad {
-      background-image: linear-gradient(rgb(172, 226, 218), rgb(44, 131, 112));
-      /* background-image: url('src/assets/al.jpg'); */
-      /* background-size: 900px 500px;
-      background-repeat: no-repeat;
-      background-position: 50%; */
-      overflow: hidden;
-    }
-
-    .something{
-      box-shadow: 0 0 8px 3px;
-      /* border-radius: 10px; */
-    }
     .loginForm {
       display: flex;
       justify-content: center;
-      background-color: #d7dfe6;
+      /* background-color: #e3eef8; */
+      background-color:inherit;
     }
 
     .formContainer {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 82vh;
       overflow: hidden;
+      padding-top: 60px;
+      padding-bottom: 60px
     }
 
     .input-container {
