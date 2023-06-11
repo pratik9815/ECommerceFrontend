@@ -1,9 +1,8 @@
-<div *ngIf="productLength > 0">
+<div *ngIf="totalPages > 0">
     <div class="h3 ms-3 pt-2">
         {{productList[0].categoryName}}
     </div>
     <div class="m-4">
-
         <div class="row" *ngFor="let item of productList; let i = index" style="margin:0 60px 0 60px">
             <div class=" pt-3 d-flex">
                 <div class=" single-product product-f-image" style="height:220px;width:fit-content">
@@ -28,4 +27,9 @@
             </div>
         </div>
     </div>
+            <div class="mb-3 d-flex justify-content-center">
+            <div class="me-2" *ngFor="let item of [].constructor(totalPages); let i = index">
+                <button (click)="getProductWithCategory(i+1)">{{i + 1}}</button>
+            </div>
+        </div>
 </div>

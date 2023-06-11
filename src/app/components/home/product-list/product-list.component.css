@@ -6,3 +6,12 @@
 a{
     text-decoration: none;
 }
+
+button:hover{
+    transition: 0.3s ease-in;
+    background-color: rgb(137, 129, 185);
+}
+button{
+    border:2px solid rgb(190, 190, 230);
+    padding:8px 15px;
+}

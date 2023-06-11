@@ -53,9 +53,9 @@ export class HeaderComponent implements OnInit {
   }
   getCategory() {
     this._categoryService.getCategory().subscribe({ 
-      next: res => {
+      next: (res:any) => {
+        console.log(res)
         this.categoryList = res;
-        console.log(this.categoryList)
       }
     });
   }

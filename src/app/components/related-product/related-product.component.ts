@@ -11,11 +11,10 @@ export class RelatedProductComponent implements OnInit {
 
   @Input("categoryId") categoryId :any;
   productList: any = [];
-  initialProductCount:number = 3
-  productsToShow: any = [];
-  additionalProductsCount = 3;
+  count:number = 1;
 
   productId:any;
+  totalPage: number = 0;
   constructor(private _categoryService:CategoryService,private _router:Router, private _activatedRoute:ActivatedRoute) {
     this._router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
@@ -25,36 +24,39 @@ export class RelatedProductComponent implements OnInit {
     this.productId = this._activatedRoute.snapshot.paramMap.get('productId');
     // console.log(this.productId)
 
-    this.getProductWithCategory();
+    this.getProductWithCategory(this.count);
   }
 
-  getProductWithCategory() {
-    if (this.categoryId && this.productId) {
+  // getProductWithCategory(count:any) {
+  //   if (this.categoryId && this.productId) {
 
-      this.categoryId.forEach((productList:any, i:any) =>{
-        this._categoryService.getProductWithCategory(this.categoryId[i]).subscribe({
-          next: res => {
-            this.productList = this.productList.concat(res)
-            .filter((product:any, index:any, self:any) =>
-            index === self.findIndex((p:any) => p.id === product.id && p.id != this.productId));
-            //filter is used to create a new array of products
-            // product has the current product being processed,
-            // index  compares the index of the current element with the index of the first occurrence of the same id
-            this.productsToShow = this.productList.slice(0,this.initialProductCount);
-            console.log(this.productsToShow)
+  //     this.categoryId.forEach((productList:any, i:any) =>{
+  //       this._categoryService.getProductWithCategory(this.categoryId[i],count).subscribe({
+  //         next: (res:any) => {
+  //           this.productList = this.productList.concat(res.product)
+  //           .filter((product:any, index:any, self:any) =>
+  //           index === self.findIndex((p:any) => p.id === product.id && p.id != this.productId));
+  //           //filter is used to create a new array of products
+  //           // product has the current product being processed,
+  //           // index  compares the index of the current element with the index of the first occurrence of the same id
+  //           this.totalPage = res.totalPage
+  //           console.log(this.productList);
+  //         }
+  //       });
+  //     });
+  //   }
+  // }
 
-          }
-        });
-      });
+  getProductWithCategory(count:any)
+  {
 
-    }
-  }
-
-  showMoreProducts() {  
-   const currentCount = this.productsToShow.length;
-    const nextIndex = currentCount + this.additionalProductsCount;
-    this.productsToShow = this.productList.slice(0, nextIndex);
-    
+    this._categoryService.getProductWithRespectiveCategory(this.categoryId,count).subscribe({
+      next: (res:any) =>{
+        this.productList = res.product;
+        this.totalPage = res.totalPage;
+        console.log(this.productList)
+      }
+    })
   }
 
   productDetailsNavigation(productId:any)

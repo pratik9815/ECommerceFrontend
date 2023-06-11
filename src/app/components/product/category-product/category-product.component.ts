@@ -10,7 +10,8 @@ import { CategoryService } from 'src/app/services/category/category.service';
 export class CategoryProductComponent implements OnInit {
   productList: any;
   categoryId: any;
-  productLength: number = 0;
+  totalPages: number = 0;
+  count:number = 1;
   constructor(private _categoryService: CategoryService,
     private _activeRoute: ActivatedRoute) { }
 
@@ -18,22 +19,21 @@ export class CategoryProductComponent implements OnInit {
     this._activeRoute.queryParams.subscribe({
       next: (res: any) => {
         this.categoryId = res.value;
-        this.getProductWithCategory();
+        this.getProductWithCategory(this.count);
       }
     });
   }
   
-  getProductWithCategory() {
+  getProductWithCategory(count:any) {
     if (this.categoryId) {
-      this._categoryService.getProductWithCategory(this.categoryId).subscribe({
+      this._categoryService.getProductWithCategory(this.categoryId,count).subscribe({
         next: (res:any) => {
-          console.log(res)
-          this.productList = res;
-          this.productLength = this.productList.length
+          console.log(res);
+          console.log(res.product)
+          this.productList = res.product;
+          this.totalPages = res.totalPage;
         }
       });
     }
   }
-
-
 }
