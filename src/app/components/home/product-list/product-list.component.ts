@@ -17,20 +17,11 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts(this.count);
   }
-  // getProduct()
-  // {
-  //   this._productService.getProducts().subscribe({
-  //     next: res =>{
-  //       this.product = res;
-  //     }
-  //     });
-  // }
   getProducts(count:any)
   {
     this._productService.getProductWithPagination(count).subscribe({
       next: (res:any) =>{
         this.product = res.product;
-        console.log(this.product);
         this.totalPages = res.totalPage;
       }
     });

@@ -4,9 +4,9 @@
 
   <div class="mt-2 mb-2"> 
     <!-- <ngb-carousel>
-        <ng-template ngbSlide *ngFor="let item of image; index as i">
+        <ng-template ngbSlide *ngFor="let item of slides; index as i">
           <div class="picsum-img-wrapper" style="height:fit-content; width:fit-content">
-            <img [src]="item.imageUrl" alt="Random first slide" style="height:400px; width:1080px">
+            <img [src]="item.url" alt="Random first slide" style="height:400px; width:1080px">
           </div>
         </ng-template>
       </ngb-carousel>  -->
@@ -28,6 +28,7 @@
       </div>
     </div>
   </div> -->
+
     <div class="slider ms-5 me-5">
       <div>
         <div (click)="goToPrevious()" class="leftArrow">❰</div>

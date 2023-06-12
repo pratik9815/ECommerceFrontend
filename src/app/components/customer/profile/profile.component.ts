@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
@@ -13,7 +14,30 @@ export class ProfileComponent implements OnInit {
   token: any;
   orderDetailsPopUpModal:boolean = false;
   orderDetails:any;
-  constructor(private _orderService:OrderService, private _authService:AuthService) { 
+
+  OrderStatus = [
+    {
+      id: OrderStatus.Pending,
+      name:"Pending",
+    },
+    {
+      id: OrderStatus.OrderRejected,
+      name:"OrderRejected",
+    },
+    {
+      id: OrderStatus.OrderProcessing,
+      name:"OrderProcessing",
+    },
+    {
+      id: OrderStatus.OrderDelivered,
+      name:"OrderDelivered",
+    },
+
+  ]
+
+
+  constructor(private _orderService:OrderService, private _authService:AuthService,
+              private _toastrService:ToastrService) { 
     
   }
 
@@ -46,4 +70,25 @@ export class ProfileComponent implements OnInit {
     this.orderDetailsPopUpModal = false;
   }
 
+
+  removeOrder(orderID:any)
+  {
+    this._orderService.removeOrder(orderID).subscribe({
+      next: res =>{
+        this._toastrService.info("Order removed","Info");
+        this.getOrders(this.customerId);
+      },
+      error: err =>{
+        this._toastrService.error("Something went wrong!","Error");
+      }
+    })
+  }
+
+}
+
+enum OrderStatus{
+  Pending = 0,
+  OrderRejected = 1,
+  OrderProcessing = 2,
+  OrderDelivered = 3
 }

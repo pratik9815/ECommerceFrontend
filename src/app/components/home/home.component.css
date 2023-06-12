@@ -8,9 +8,19 @@ a {
 }
 
 
-
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
 /* slides */
 
+
+.slider {
+  position: relative; 
+  overflow: hidden;
+}
 
 .slide {
   /* width: 100%; */
@@ -20,15 +30,15 @@ a {
   transition: 0.5s ease-in;
 
 
+
 }
 
 .rightArrow {
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translate(0, -25%);
   right: 32px;
   font-size: 45px;
-  /* color: #fff; */
   color: black;
   z-index: 1;
   cursor: pointer;
@@ -37,11 +47,10 @@ a {
 
 .leftArrow {
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translate(0, -25%);
   left: 32px;
   font-size: 45px;
-  /* color: #fff; */
   color: black;
   z-index: 1;
   cursor: pointer;
@@ -49,9 +58,6 @@ a {
 }
 
 
-.slider {
-  position: relative;
-}
 
 .dotsContainer {
   display: flex;

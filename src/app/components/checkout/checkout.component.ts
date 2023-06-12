@@ -19,7 +19,8 @@ export class CheckoutComponent implements OnInit {
   submitted:boolean = false;
   cartItems: any = [];
   product: any;
-  amount: any;
+  isUseDefaultAddress:boolean = false;
+
   constructor(private _formBuildre:FormBuilder,
     private _cartService:CartService,
     private _authService:AuthService,
@@ -44,6 +45,15 @@ export class CheckoutComponent implements OnInit {
     return this.checkOutForm.controls;
   }
 
+  useDefault()
+  {
+    this.isUseDefaultAddress = ! this.isUseDefaultAddress;
+  
+    console.log(this.isUseDefaultAddress)
+    console.log(this._authService.user);
+  }
+
+
   getCartItem()
   {
     this._cartService.getProduct().subscribe({
@@ -56,48 +66,38 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit()
   {
-    this.submitted = true;
+    
     console.log(this.checkOutForm.value)
-    if(this.checkOutForm.invalid) return;
     if(this.grandTotal<0) 
         return;
 
+        //Check if the user is logedd in or not
     this._authService.isLoggedIn$.subscribe({
       next: res=>{
         this.isLoggedIn = res;
       }
     }); 
-
+    //if not then route to the login page
     if(!this.isLoggedIn)
     {
       this._toastrService.info("Please login to continue","Info")
      
       this._router.navigate(['/login'],{queryParams:{returnUrl: this._router.url}});
     }
-    else{
-      this._cartService.getProduct().subscribe({
-        next: res =>{
-          console.log(res);
-          this.product = res.map(
-            (data:any) => {   
-              return {
-                productId: data.id,
-                quantity: data.quantity
-              }
-            }
-          );
-          console.log(this.product)
-        }
-      });
-      const orderData = {
+
+    if(this.isUseDefaultAddress)
+    {
+      const user = this._authService.user;
+      this.getCartItemProduct();
+        const orderData = {
         "product" : this.product,
         "amount" : this.grandTotal,
-        "shippingAddress" : this.checkOutForm.value.shippingAddress,
-        "ordersAddress" : this.checkOutForm.value.orderAddress,
-        "orderEmail": this.checkOutForm.value.orderEmail,
-        "phoneNumber": this.checkOutForm.value.phoneNumber,
+        "shippingAddress" : user.address,
+        "ordersAddress" : user.address,
+        "orderEmail": user.email,
+        "phoneNumber": user.phoneNumber,
       }
-      console.log(orderData)
+
       this._orderService.createOrder(orderData).subscribe({
         next: res =>{
           this._toastrService.info("Your product has been placed successfully!");
@@ -108,8 +108,39 @@ export class CheckoutComponent implements OnInit {
           this._toastrService.error("Unsuccessfull","Error")
         }
       });
-      
     }
+
+
+    if(!this.isUseDefaultAddress){
+      this.submitted = true;
+      if(this.checkOutForm.invalid) return;
+      this.getCartItemProduct();
+      const orderData = {
+        "product" : this.product,
+        "amount" : this.grandTotal,
+        "shippingAddress" : this.checkOutForm.value.shippingAddress,
+        "ordersAddress" : this.checkOutForm.value.orderAddress,
+        "orderEmail": this.checkOutForm.value.orderEmail,
+        "phoneNumber": this.checkOutForm.value.phoneNumber,
+      }
+      console.log(orderData)
+    }
+  }
+
+  getCartItemProduct()
+  {
+    this._cartService.getProduct().subscribe({
+      next: res =>{
+        console.log(res);
+        this.product = res.map(
+          (data:any) => {   
+            return {
+              productId: data.id,
+              quantity: data.quantity
+            }
+          });
+      }
+    });
   }
 
 }

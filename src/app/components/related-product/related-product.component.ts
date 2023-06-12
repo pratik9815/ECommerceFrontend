@@ -27,34 +27,16 @@ export class RelatedProductComponent implements OnInit {
     this.getProductWithCategory(this.count);
   }
 
-  // getProductWithCategory(count:any) {
-  //   if (this.categoryId && this.productId) {
-
-  //     this.categoryId.forEach((productList:any, i:any) =>{
-  //       this._categoryService.getProductWithCategory(this.categoryId[i],count).subscribe({
-  //         next: (res:any) => {
-  //           this.productList = this.productList.concat(res.product)
-  //           .filter((product:any, index:any, self:any) =>
-  //           index === self.findIndex((p:any) => p.id === product.id && p.id != this.productId));
-  //           //filter is used to create a new array of products
-  //           // product has the current product being processed,
-  //           // index  compares the index of the current element with the index of the first occurrence of the same id
-  //           this.totalPage = res.totalPage
-  //           console.log(this.productList);
-  //         }
-  //       });
-  //     });
-  //   }
-  // }
-
   getProductWithCategory(count:any)
   {
 
     this._categoryService.getProductWithRespectiveCategory(this.categoryId,count).subscribe({
       next: (res:any) =>{
-        this.productList = res.product;
+        //Filter the same product
+        //This returns only the unique product
+        this.productList = res.product.filter((product:any) => {return product.id !== this.productId});
         this.totalPage = res.totalPage;
-        console.log(this.productList)
+        // console.log(this.productList)
       }
     })
   }

@@ -56,16 +56,27 @@
         </div>
         <div class="row">
             <div class="col-sm-3"></div>
-            <div class="col-sm-3">
-                <strong class="fs-5"> Total amount : {{grandTotal}}</strong> <br>
+            <div class="col-sm-9">
+                <strong class="fs-5"> Total amount : {{grandTotal}}</strong> &nbsp; &nbsp;
                 <strong class="fs-5">Payment method : Cash on delivery!</strong>
+
             </div>
-            <div class="col-sm-1 ms-4"></div>
-            <div class="col-sm-2 ms-5">
-                <button class="btn btn-primary" type="submit">Order Now</button>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4">
+                    <h4 class="mt-3"><b>OR</b></h4>
+                    <input type="checkbox"  (click)="useDefault()"> &nbsp;<strong>Use default address.</strong>
+                </div>
+                <div class="col-sm-5  mt-3 ps-5">
+                    <button class="btn btn-primary ms-5" type="submit">Order Now</button>
+                </div>
             </div>
+
+           
         </div>
+
     </form>
+
 <hr>
     <div *ngIf="cartItems.length != 0">
         <h2 class="ms-4">My Orders:</h2>

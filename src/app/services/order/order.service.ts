@@ -19,6 +19,10 @@ export class OrderService {
   }
   getOrderDetails(customerId:any)
   {
-    return this._httpClient.get("https://localhost:7069/api/OrderDetails/get-order-details?customerId=" + customerId)
+    return this._httpClient.get(this.apiUrl + "get-order-details?customerId=" + customerId)
+  }
+  removeOrder(id:any)
+  {
+    return this._httpClient.post(this.apiUrl + "remove-order?orderId="+ id,null )
   }
 }

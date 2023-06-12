@@ -3,19 +3,25 @@
     align-items: center;
   }
   
-  .count {
+.count {
     width: 35px;
     height: 35px;
   }
-  a{
+a{
     text-decoration: none;
   }
   
-  span {
+span {
     margin: 0 10px;
     font-size: 20px;
   }
-  .img{
+.img{
     height: 230px;
     width: 100%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon
+{
+  filter: invert(1);
 }

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { OrderService } from 'src/app/services/order/order.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -31,21 +32,28 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   productData:any;
   count:number = 1;
   productId: any;
-  cartItem: any;
-  productList: any = [];  
+  // cartItem: any;
+
+  addedToCart:boolean = false;
+
+  quantityAfterAddedToCart: number;
+
   private dataSubscription: Subscription;
   constructor(private _activeRoute:ActivatedRoute,
               private _productService:ProductService,
               private _cartService:CartService,
               private _categoryService: CategoryService,
               private _router:Router,
-              private _toastrService:ToastrService) { 
+              private _toastrService:ToastrService,
+              private _orderService:OrderService) { 
                 // this._router.routeReuseStrategy.shouldReuseRoute = () => false;
               }
 
 
   ngOnInit(): void {
+
     this.productId = this._activeRoute.snapshot.paramMap.get('productId');
+
     this.getProduct();
   }
 
@@ -54,9 +62,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     if(this.productId != null)
     {
       this.dataSubscription = this._productService.getProductById(this.productId).subscribe({
-        next: res =>{
-          this.productData = res;          
-          this.productData.categories.forEach((category:any) => {
+        next: (res:any) =>{
+
+              this.productData = res;          
+            
+            this.productData.categories.forEach((category:any) => {
             this.categoryId.push(category.categoryId);
           });
         },
@@ -80,16 +90,17 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   addCart(products:any)
   {
-
+    //since the product is not ordered so the quantity remains the same
+      this.addedToCart = true; // This is to make button disable after the product is added to cart
       const modifiedProduct = JSON.parse(JSON.stringify(products));
       const originalQuantity = this.productData.quantity;
 
-      if(originalQuantity > this.count)
+      if(originalQuantity >= this.count)
       {
         modifiedProduct.quantity = this.count;
         this._cartService.addToCart(modifiedProduct);
         const updatedQuantity = originalQuantity - this.count;
-        this.productData.quantity = updatedQuantity;
+        this.productData.quantity = updatedQuantity; // This is for showing in the same page 
       }
       else{
         this._toastrService.error("Please select valid product quanity!")

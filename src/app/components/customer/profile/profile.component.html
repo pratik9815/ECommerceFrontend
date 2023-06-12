@@ -8,7 +8,7 @@
                 <th style="width: 300px">Order Id</th>
                 <th style="width: 20px;">Total Amount(Rs.)</th>
                 <th style="width:100px">Status</th>
-                <th style="width:100px">Actions</th>
+                <th style="width:120px">Actions</th>
             </tr>
         </thead>
         <tbody *ngFor="let item of order; let i = index">
@@ -16,9 +16,9 @@
                 <td>{{i+1}}</td>
                 <td>{{item.id}}</td>
                 <td>{{item.amount}}</td>
-                <td>InProgress</td>
+                <td>{{OrderStatus[item.orderStatus].name}}</td>
                 <td>
-                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                    <button class="btn btn-danger" (click)="removeOrder(item.id)"><i class="fa fa-trash" (click)="removeOrder(item.id)"></i></button>&nbsp; &nbsp;
                     <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
                         <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
                     </button>
