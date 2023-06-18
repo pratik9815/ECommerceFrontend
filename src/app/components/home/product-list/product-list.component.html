@@ -7,7 +7,7 @@
         </div>
     </div>
     <strong *ngIf="!product" class="ms-5">Loading......</strong>
-
+<!-- 
     <div class="row">
         <div class="col-4 mb-5 me-0" *ngFor="let item of product">
             <div class="single-product">
@@ -28,7 +28,35 @@
                 
             </div>
         </div>
+    </div> -->
+
+    <div class="m-4">
+        <div class="row" *ngFor="let item of product; let i = index" style="margin:0 60px 0 60px">
+            <div class=" pt-3 d-flex">
+                <div class=" single-product product-f-image" style="height:220px;width:400px">
+                    <!-- <img class="img" src="{{item.imageLists.imageUrl}}" alt="" style="height:250px;width:400px"> -->
+                    <img class="img" src="{{item.imageLists.imageUrl}}" alt="" style="height:220px;width:fit-content">
+                    <div class="product-hover">
+                        <!-- <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a> -->
+                        <a routerLink="/product-details/{{item.id}}"  class="view-details-link"><i
+                                class="fa fa-link"></i> See details</a>
+                    </div>
+                </div>
+                <div class="ms-5">
+                    <h4>{{item.name}}</h4>
+                    <div class="product-carousel-price">
+                        <ins>Rs: {{item.price}}</ins>
+                    </div>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star" style="color:gold"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="mb-3 d-flex justify-content-center">
         <div class="me-2" *ngFor="let item of [].constructor(totalPages); let i = index">
             <button (click)="getProducts(i+1)">{{i + 1}}</button>

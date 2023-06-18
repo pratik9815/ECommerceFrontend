@@ -38,7 +38,7 @@
         <hr>
         <div class="row">
             <div class="col-sm-3 my-2">
-                <button type="button" [disabled]="addedToCart" class="btn btn-primary">Buy Now</button>
+                <button type="button" class="btn btn-primary" (click)="gotToCheckout(productData)">Buy Now</button>
             </div>
             <div class="col-sm-4 my-2">
                 <button type="button" [disabled]="addedToCart" class="btn btn-warning" (click)="addCart(productData)">Add to cart</button>

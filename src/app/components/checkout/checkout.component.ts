@@ -66,8 +66,9 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit()
   {
-    
-    console.log(this.checkOutForm.value)
+    if(this.cartItems === null)
+        return;
+    // console.log(this.checkOutForm.value)
     if(this.grandTotal<0) 
         return;
 

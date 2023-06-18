@@ -90,6 +90,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   addCart(products:any)
   {
+    
     //since the product is not ordered so the quantity remains the same
       this.addedToCart = true; // This is to make button disable after the product is added to cart
       const modifiedProduct = JSON.parse(JSON.stringify(products));
@@ -107,6 +108,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       }
 
 
+  }
+
+  gotToCheckout(product:any)
+  {
+    this.addCart(product);
+    this._router.navigate(['/checkout'])
   }
   ngOnDestroy(): void {
     if(this.dataSubscription){

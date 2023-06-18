@@ -11,11 +11,11 @@ export class OrderDetailsComponent implements OnInit {
 
   productData:any = [];
   quantity:any;
+  grandTotal:number = 0;
    constructor() { }
 
   ngOnInit(): void {
     this.orderDetails.forEach((element:any, i:number) => {
-      
       this.productData.push(element.product);
       this.productData.quantity = this.orderDetails[i].quantity;
     });

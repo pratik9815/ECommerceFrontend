@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -9,11 +9,15 @@ import { OrderService } from 'src/app/services/order/order.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+
   order: any;
   customerId: any;
   token: any;
   orderDetailsPopUpModal:boolean = false;
   orderDetails:any;
+
+  orderId:any;
 
   OrderStatus = [
     {
@@ -71,9 +75,9 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  removeOrder(orderID:any)
+  removeOrder()
   {
-    this._orderService.removeOrder(orderID).subscribe({
+    this._orderService.removeOrder(this.orderId).subscribe({
       next: res =>{
         this._toastrService.info("Order removed","Info");
         this.getOrders(this.customerId);
@@ -82,6 +86,12 @@ export class ProfileComponent implements OnInit {
         this._toastrService.error("Something went wrong!","Error");
       }
     })
+  }
+
+  getId(id:any)
+  {
+    this.orderId = id;
+    console.log(this.orderId)
   }
 
 }

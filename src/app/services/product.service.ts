@@ -18,10 +18,7 @@ export class ProductService {
     return this._httpClient.get(this.apiUrl+"getbyid/"+id);
   }
 
-  getProductWithRespectiveCategory()
-  {
-    return this._httpClient.get(this.apiUrl);
-  }
+
   getProductWithPagination(count:any)
   {
     return this._httpClient.get(this.apiUrl+"get-product-with-pagination/"+count)
