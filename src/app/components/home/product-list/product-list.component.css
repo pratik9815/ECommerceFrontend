@@ -1,7 +1,6 @@
 .single-product{
     width: 365px;
     height: 320px;
-    /* box-shadow:  0 0 20px 1px; */
 }
 a{
     text-decoration: none;
@@ -12,6 +11,8 @@ button:hover{
     background-color: rgb(137, 129, 185);
 }
 button{
-    border:2px solid rgb(190, 190, 230);
+    height: 40px;
+    border-radius: 50px;
+    border:2px solid rgb(191, 191, 235);
     padding:8px 15px;
 }

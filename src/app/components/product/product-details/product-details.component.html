@@ -17,9 +17,7 @@
         <h4 style="font-weight:bold">{{productData.name}}</h4>
 
         <hr>
-        <div><span style="font-weight:bold" class="m-0">Description:</span>
-           <p style="margin-bottom:2px">{{productData.description}}</p> 
-        </div>
+
         <div>
             <span style="font-weight:bold" class="m-0">Price:</span>
             {{productData.price}} 
@@ -35,6 +33,9 @@
         <div><span style="font-weight:bold" class="m-0">Category:</span>
             <div *ngFor="let product of productData.categories" class="m-0">{{product.categoryName}}</div>
         </div>
+        <div><span style="font-weight:bold" class="m-0">Description:</span>
+            <p style="margin-bottom:2px">{{productData.description}}</p> 
+         </div>
         <hr>
         <div class="row">
             <div class="col-sm-3 my-2">

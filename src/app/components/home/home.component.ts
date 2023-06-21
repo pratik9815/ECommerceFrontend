@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   productDetailsPage: boolean = false
   // image: any;
-  // slides: any[];
+  // slides: any[]; 
   currentIndex: number = 0;
   timeoutId?: number;
 
@@ -26,56 +26,18 @@ export class HomeComponent implements OnInit {
     private _carouselService: CarouselService) { }
   ngOnInit(): void {
     this.resetTimer();
-    // this.getCarouselImage();
   }
 
-
-  // getCarouselImage() {
-  //   this._carouselService.getCarouselImage().subscribe({
-  //     next: (res: any) => {
-  //       this.slides = res;
-  //     },
-  //     error: err => {
-  //       console.log(err);
-  //     }
-  //   });
+  // getSlideTransform(slideIndex: number) {
+  //   const difference = slideIndex - this.currentIndex;
+  //   const translateXValue = difference * 100; // Adjust this value as needed
+  //   return `translateX(${translateXValue}%)`;
   // }
-
-
-  // goToPrevious() {
-  //   const isFirstSlide = this.currentIndex === 0;
-  //   const newIndex = isFirstSlide
-  //     ? this.slides.length - 1
-  //     : this.currentIndex - 1;
-  //   this.resetTimer();
-  //   this.currentIndex = newIndex;
-  // }
-
-  // goToNext() {
-  //   if(this.slides)
-  //   {
-  //     const isLastSlide = this.currentIndex === this.slides.length - 1;
-  //     const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
-  //     this.resetTimer();
-  //     this.currentIndex = newIndex;
-  //   }
-
-  // }
-
-  // getCurrentSlideUrl() {
-  //   return `url('${this.slides[this.currentIndex].imageUrl}')`;
-  // }
-  // goToSlide(slideIndex: any) {
-  //   this.resetTimer();
-  //   this.currentIndex = slideIndex;
-  // }
-
-  // resetTimer() {
-  //   if (this.timeoutId) {
-  //     window.clearTimeout(this.timeoutId);
-  //   }
-  //   this.timeoutId = window.setTimeout(() => this.goToNext(), 5000);
-  // }
+  
+  getSlideTransform() {
+    const translateXValue = -this.currentIndex * 100; // Adjust this value as needed
+    return `translateX(${translateXValue}%)`;
+  }
 
   ngOnDestroy() {
     window.clearTimeout(this.timeoutId);
@@ -100,7 +62,6 @@ export class HomeComponent implements OnInit {
   goToNext(): void {
     const isLastSlide = this.currentIndex === this.slides.length - 1;
     const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
-
     this.resetTimer();
     this.currentIndex = newIndex;
   }
@@ -112,12 +73,10 @@ export class HomeComponent implements OnInit {
 
   getCurrentSlideUrl() {
     return `url('${this.slides[this.currentIndex].url}')`;
-  }
-
+  }   
 
 }
-interface SlideInterface
-{
-  url:string,
-  title:string;
+interface SlideInterface {
+  url: string,
+  title: string;
 }

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/services/auth.service';
+import { UserInfo } from 'os';
+import { AuthService, CustomerInfo } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit {
   orderDetails:any;
 
   orderId:any;
-
+  userInfo:CustomerInfo;
   OrderStatus = [
     {
       id: OrderStatus.Pending,
@@ -47,6 +48,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerId = this._authService.user.customerId;
+    this.userInfo = this._authService.user;
+    console.log(this.userInfo)
     if(this.customerId){
       this.getOrders(this.customerId);
     }

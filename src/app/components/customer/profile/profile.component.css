@@ -1,3 +1,23 @@
 /* th, td{
     border: 1px solid;
 } */
+
+.userContainer{
+    background-color: rgb(174, 174, 198);
+    width: 380px;
+    box-shadow: 0 0 15px rgb(94, 94, 100);
+}
+
+.userInfoClass{
+    font-size: 20px;
+    margin-top: 8px;
+}
+.buttonClass{
+    padding-top: 10px;
+    background-color:aqua ;
+    position: relative;
+}
+.bottomClass{
+    position: absolute;
+    bottom: 20px;
+}

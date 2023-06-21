@@ -9,6 +9,8 @@ button:hover{
     background-color: rgb(137, 129, 185);
 }
 button{
-    border:2px solid rgb(209, 209, 242);
+    height: 40px;
+    border-radius: 50px;
+    border:2px solid rgb(191, 191, 235);
     padding:8px 15px;
 }

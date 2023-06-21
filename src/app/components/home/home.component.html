@@ -1,40 +1,28 @@
-<div class="row" style="background-color: #b7c9c9;height:430px" *ngIf="slides">
+<div class="row" style="background-color: #b7c9c9;height:500px" *ngIf="slides">
   <!-- <div class="col-sm-3">
   </div> -->
 
   <div class="mt-2 mb-2"> 
-    <!-- <ngb-carousel>
+    <!-- <div class="mt-2 mb-2"> 
+    <div class="slide-container">
+      <ngb-carousel>
         <ng-template ngbSlide *ngFor="let item of slides; index as i">
-          <div class="picsum-img-wrapper" style="height:fit-content; width:fit-content">
-            <img [src]="item.url" alt="Random first slide" style="height:400px; width:1080px">
+          <div class="picsum-img-wrapper" style="height:fit-content; width:fit-content;margin:0 100px 0 100px ;">
+            <img [src]="item.url" alt="Random first slide" style="height:450px; width:100vw;">
           </div>
         </ng-template>
-      </ngb-carousel>  -->
+      </ngb-carousel> 
+    </div>  -->
 
-    <!-- <div class="slider" >
-      <div>
-        <div (click)="goToPrevious()" class="leftArrow">❰</div>
-        <div (click)="goToNext()" class="rightArrow">❱</div>
-      </div>
-      <div>
-        <div class="slide" [ngStyle]="{ 'background-image': getCurrentSlideUrl() }">
-        </div>
-      </div>
-
-      <div class="dotsContainer">
-        <div *ngFor="let slide of slides; let slideIndex = index" class="dot" (click)="goToSlide(slideIndex)">
-          ●
-        </div>
-      </div>
-    </div>
-  </div> -->
-
+        <!-- , 'transform': getSlideTransform() -->
     <div class="slider ms-5 me-5">
       <div>
         <div (click)="goToPrevious()" class="leftArrow">❰</div>
         <div (click)="goToNext()" class="rightArrow">❱</div>
       </div>
-      <div class="slide" [ngStyle]="{ 'background-image': getCurrentSlideUrl() }"></div>
+      <div class="side-container">
+        <div class="slide" [ngStyle]="{ 'background-image': getCurrentSlideUrl()}"  ></div>
+      </div>
       <div class="dotsContainer">
         <div *ngFor="let slide of slides; let slideIndex = index" class="dot" (click)="goToSlide(slideIndex)">
           ●
@@ -42,8 +30,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="col-sm-2" style="padding:0">
-  </div> -->
 </div>
 <div class="product-list-wrapper">
   <app-product-list></app-product-list>

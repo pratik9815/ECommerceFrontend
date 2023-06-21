@@ -1,7 +1,49 @@
-<div>
-    <h2 class="ms-3"><b>My Orders</b></h2>
+<h2 class="ms-3"><b>Your Profile</b></h2>
+<div class="row ms-3 mb-3" *ngIf="userInfo">
+    <div class="img-container col-sm-2 me-5" style="background-color:rgb(206, 199, 199);">
+        This is a image container.
+    </div>
 
-    <table class="table ms-3 mt-4" style="width:780px">
+    <div class="col-sm-4 userContainer">
+        <div class="userInfoClass">
+            <i class="bi bi-person-fill"></i>&nbsp;
+            Name : <span>{{userInfo.fullName}}</span>
+        </div>
+        <div class="userInfoClass">
+            <i class="bi bi-envelope-fill"></i>&nbsp;
+            Email : <span>{{userInfo.email}}</span>
+        </div>
+        <div class="userInfoClass">
+            <i class="bi bi-geo-alt-fill"></i>&nbsp;
+           Address : <span>{{userInfo.address}}</span>
+        </div>
+        <div class="userInfoClass">
+            <i class="bi bi-telephone-fill"></i>&nbsp;
+            Phone Number : <span>{{userInfo.phoneNumber}}</span>
+        </div>
+    </div>
+
+    <div class="ms-5 col-sm-3 buttonClass">
+        <div class="bottomClass">
+            <button class="btn btn-primary">
+                Update Details
+            </button>
+            <button class="ms-3 btn btn-warning">
+                Change Password
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="fs-2 text-center mt-4" *ngIf="!order">
+You do not have order history.<br>
+<button class="btn btn-warning" routerLink="">Shop Now</button>
+</div>
+
+
+<div style="margin: 0 20vw 0 20vw" *ngIf="order">
+    <h2 class="text-center"><b>My Orders</b></h2>
+    <table class="table ms-3 mt-4">
         <thead>
             <tr>
                 <th style="width: 20px">S.N</th>
@@ -19,7 +61,8 @@
                 <td>{{OrderStatus[item.orderStatus].name}}</td>
                 <td>
                     <!-- <button class="btn btn-danger" (click)="removeOrder(item.id)"><i class="fa fa-trash" (click)="removeOrder(item.id)"></i></button>&nbsp; &nbsp; -->
-                    <button class="btn btn-danger"  type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"  (click)="getId(item.id)"><i class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        (click)="getId(item.id)"><i class="fa fa-trash"></i></button>&nbsp; &nbsp;
                     <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
                         <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
                     </button>
@@ -32,7 +75,7 @@
 
 <div class="modal fade show" role="dialog" *ngIf="orderDetailsPopUpModal" id="orderDetailsModal"
     style="display:block;background: rgba(0, 0, 0, 0.7)">
-    <div class="modal-dialog">  
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Order details</h1>
@@ -50,18 +93,19 @@
 <!-- delete modal pop up -->
 <div class="modal fade " id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to cancle this order?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="removeOrder()">Delete</button>
+            </div>
         </div>
-        <div class="modal-body">
-          Are you sure you want to cancle this order?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="removeOrder()">Delete</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
