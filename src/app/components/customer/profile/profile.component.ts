@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   token: any;
   orderDetailsPopUpModal:boolean = false;
   orderDetails:any;
+  orderDate:Date;
 
   orderId:any;
   userInfo:CustomerInfo;
@@ -61,8 +62,6 @@ export class ProfileComponent implements OnInit {
     this._orderService.getOrder(id).subscribe({
       next: res =>{
         this.order = res;
-        console.log(this.order)
-        // console.log(this.order[0].orderDetails[0].product.id)
       }
     });
   }
