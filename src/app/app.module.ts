@@ -32,6 +32,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
 import { ProductListComponent } from './components/home/product-list/product-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RandomProductListComponent } from './components/home/random-product-list/random-product-list.component';
+import { PopularProductListComponent } from './components/home/popular-product-list/popular-product-list.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { RandomProductListComponent } from './components/home/random-product-lis
     ProductListComponent,
     FooterComponent,
     RandomProductListComponent,
+    PopularProductListComponent,
 
   ],
   imports: [

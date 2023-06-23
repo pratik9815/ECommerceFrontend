@@ -27,4 +27,8 @@ export class ProductService {
   {
     return this._httpClient.get(this.apiUrl + 'get-random-product');
   }
+  getPopularProduct()
+  {
+    return this._httpClient.get(this.apiUrl+'get-popular-product');
+  }
 }

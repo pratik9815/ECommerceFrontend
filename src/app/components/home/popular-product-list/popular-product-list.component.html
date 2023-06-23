@@ -2,27 +2,26 @@
     <div class="row">
         <div class="col-12">
             <div class="section-title">
-                <span class="h2" style="border-bottom: 2px solid;">Products</span>
+                <span class="h2" style="border-bottom: 2px solid;">Popular Products</span>
             </div>
         </div>
     </div>
-    <strong *ngIf="!product" class="ms-5">Loading......</strong>
+    <strong *ngIf="!popularProduct" class="ms-5">Loading......</strong>
 
     <div class="row">
-        <div class="col-3 mb-5 me-0" *ngFor="let item of product; let i = index" style="margin:0 60px 0 60px">
+        <div class="col-3 mb-5 me-0" *ngFor="let item of popularProduct; let i = index" style="margin:0 60px 0 60px">
             <div class="single-product">
-                <div class="product-f-image" style="height:fit-content; width:400px" >
-                    <!-- <img class="img" src="{{item.imageLists[0].imageUrl}}" alt="" style="height:230px;width:380px"> -->
-                    <img class="img" src="{{item.imageLists.imageUrl}}" alt="" style="height:220px;width:fit-content">
+                <div class="product-f-image" style="height:fit-content; width:400px">
+                    <img class="img" src="{{item.imageList.imageUrl}}" alt="" style="height:220px;width:fit-content">
                     <div class="product-hover">
                         <a routerLink="product-details/{{item.id}}" class="view-details-link"><i class="fa fa-link"></i>
                             See details</a>
                     </div>
                 </div>
                 <div>
-                    <h2>{{item.name}}</h2>
+                    <h2>{{item.productName}}</h2>
                     <div class="product-carousel-price">
-                        <ins>Rs: {{item.price}}</ins>
+                        <ins>Rs: {{item.totalPrice}}</ins>
                     </div>
                     <i class="fa-solid fa-star" style="color:gold"></i>
                     <i class="fa-solid fa-star" style="color:gold"></i>
@@ -30,15 +29,8 @@
                     <i class="fa-solid fa-star" style="color:gold"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                
+
             </div>
         </div>
     </div>
-
-    <div class="mb-3 d-flex justify-content-center">
-        <div class="me-2" *ngFor="let item of [].constructor(totalPages); let i = index">
-            <button (click)="getProducts(i+1)">{{i + 1}}</button>
-        </div>
-    </div>
-
 </div>
