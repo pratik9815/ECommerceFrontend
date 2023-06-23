@@ -23,4 +23,8 @@ export class ProductService {
   {
     return this._httpClient.get(this.apiUrl+"get-product-with-pagination/"+count)
   }
+  getLimitedProduct()
+  {
+    return this._httpClient.get(this.apiUrl + 'get-random-product');
+  }
 }

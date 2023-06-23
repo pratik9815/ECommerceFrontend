@@ -31,6 +31,7 @@ import { RelatedProductComponent } from './components/related-product/related-pr
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { ProductListComponent } from './components/home/product-list/product-list.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RandomProductListComponent } from './components/home/random-product-list/random-product-list.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FooterComponent } from './components/footer/footer.component';
     OrderDetailsComponent,
     ProductListComponent,
     FooterComponent,
+    RandomProductListComponent,
 
   ],
   imports: [
