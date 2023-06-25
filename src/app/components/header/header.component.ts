@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   categoryList: any;
   productList: any;
   isSelected: boolean = false;
+  categoryListWithSubCategory: any;
   
 
   constructor(private _cartService: CartService,
@@ -29,7 +30,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn$ = this._authService.isLoggedIn$;
-    this.getCategory();
+    // this.getCategory();
+    this.getCategoryWithSubCategory();
     this.getFromCart();
   }
 
@@ -64,5 +66,15 @@ export class HeaderComponent implements OnInit {
     if (this.isSelected) {
       this._router.navigate(['category-product'], { queryParams: { value: e } })
     }
+  }
+
+  getCategoryWithSubCategory()
+  {
+    this._categoryService.getCategoryWithSubCategory().subscribe({ 
+      next: (res:any) => {
+        this.categoryListWithSubCategory = res;
+        console.log(this.categoryListWithSubCategory)
+      }
+    });
   }
 }

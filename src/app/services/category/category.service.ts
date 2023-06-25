@@ -23,5 +23,9 @@ export class CategoryService {
     const params = {categoryId , page: count}
     return this._httpClient.get(url, {params});
   }
+  getCategoryWithSubCategory()
+  {
+    return this._httpClient.get(this.apiUrl + 'get-category-with-sub-category');
+  }
 
 }

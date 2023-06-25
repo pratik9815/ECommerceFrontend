@@ -1,4 +1,8 @@
-<div *ngIf="totalPages > 0">
+<div *ngIf="productList == []">
+    <h4>No product to show for this category!!!</h4>
+</div>
+
+<div *ngIf="totalPages > 0 && productList">
     <div class="h3 ms-3 pt-2">
         {{productList[0].categoryName}}
     </div>

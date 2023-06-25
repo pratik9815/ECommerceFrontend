@@ -7,17 +7,48 @@ a.btn:hover{
 .nav-item{
     background-color: inherit;
 }
-
+li{
+	list-style: none;
+}
 .dropdown:hover .dropdown-menu{
     display: block;
 }
 .dropdown .dropdown-toggle:active{
     pointer-events: none;
 }
+.subcategory-dropdown
+{
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	margin-left: 142px;
+	line-height: 35px;
+	border-radius: 6px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	padding: 0;
+	/* margin-top:20px ; */
+	z-index: 1;
+}
+.subCategoryMenu
+{
+	margin-top: 0;
+}
+
+.dropdown-menu li:hover .subCategoryDropdown {
+	display: block;
+	cursor: pointer;
+	border-radius: 6px;
+  }
 
 .dropdown-item:hover{
-    cursor: pointer;
+	cursor: pointer;
 }
+.subCategory-dropdown-item:hover
+{
+	border-radius: 6px;
+}
+
 
 .account li{
     width: 100%;
@@ -136,3 +167,12 @@ dl, ol, ul {
     margin-top: 0;
     margin-bottom: 0rem;
 }
+
+
+i.fa.fa-angle-right{
+	opacity: 0.5;
+	position: absolute;
+	margin-top: 6px;
+	right:7px;
+}
+
