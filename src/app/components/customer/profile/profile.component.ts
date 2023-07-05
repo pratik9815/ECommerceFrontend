@@ -11,6 +11,8 @@ import { OrderService } from 'src/app/services/order/order.service';
 })
 export class ProfileComponent implements OnInit {
 
+  selectedTab = 'tab1';
+  orderStatus = OrderStatus.Pending;
 
   order: any;
   customerId: any;
@@ -55,11 +57,30 @@ export class ProfileComponent implements OnInit {
       this.getOrders(this.customerId);
     }
   }
+
+  selectTab(tabName: string) {
+    
+    if(tabName == 'tab1')
+    {
+      this.orderStatus = OrderStatus.Pending;
+    }
+    if(tabName == 'tab2')
+    {
+      this.orderStatus = OrderStatus.OrderDelivered;
+    }
+    this.selectedTab = tabName;
+    this._orderService.getOrder(this.customerId,1,this.orderStatus).subscribe({
+      next: res =>{
+        this.order = res;
+        console.log(res)
+      }
+    });
+  }
   
 
   getOrders(id:any)
   {
-    this._orderService.getOrder(id).subscribe({
+    this._orderService.getOrder(id,1,this.orderStatus).subscribe({
       next: res =>{
         this.order = res;
       }

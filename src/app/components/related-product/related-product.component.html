@@ -1,11 +1,15 @@
 <!-- Related product list -->
+
 <div class="ps-2 pt-3" *ngIf="totalPage>0">
     <h2 class="text-center">Related Products</h2>
-    <div class="m-4">
+    <div *ngIf="productList == null" class="text-center">
+        <span class="h4 mt-5">!!!No products to shows</span>
+    </div>
+    <div class="m-4" *ngIf="productList != null">
         <div class="row" *ngFor="let item of productList; let i = index" style="margin:0 80px 0 80px">
             <div class=" pt-3 d-flex">
-                <div class=" single-product product-f-image" style="height:fit-content;width:400px">
-                    <img class="img" src="{{item.img.imageUrl}}" alt="" style="height:250px;width:fit-content">
+                <div class=" single-product product-f-image photos" style="height:fit-content;width:400px">
+                    <img class="img" src="{{imageUrl + item.img.imageName}}" alt="" style="max-height:250px;">
                     <div class="product-hover">
                         <!-- <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a> -->
                         <!-- <a href="product-details/{{item.id}}" class="view-details-link"><i class="fa fa-link"></i> See details</a> -->
@@ -17,6 +21,9 @@
                     <h4>{{item.name}}</h4>
                     <div class="product-carousel-price">
                         <ins>Rs: {{item.price}}</ins>
+                    </div>      
+                    <div>
+                        <span>{{item.description}}</span>
                     </div>
                     <i class="fa-solid fa-star" style="color:gold"></i>
                     <i class="fa-solid fa-star" style="color:gold"></i>
@@ -28,7 +35,7 @@
         </div>
 
     </div>
-    <div class="mb-3 d-flex justify-content-center">
+    <div class="mb-3 d-flex justify-content-center" *ngIf="productList != null">
         <div class="me-2" *ngFor="let item of [].constructor(totalPage); let i = index">
             <button (click)="getProductWithCategory(i+1)">{{i + 1}}</button>
         </div>

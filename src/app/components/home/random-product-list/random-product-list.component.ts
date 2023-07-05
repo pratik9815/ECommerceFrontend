@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-random-product-list',
@@ -8,7 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class RandomProductListComponent implements OnInit {
   randomProducts: any;
-
+  public imageUrl = environment.imageUrl;
   constructor(private _productService:ProductService) { }
 
   ngOnInit(): void {
@@ -20,7 +21,6 @@ export class RandomProductListComponent implements OnInit {
     this._productService.getLimitedProduct().subscribe({
       next: res => {
         this.randomProducts = res;
-        console.log(this.randomProducts); 
       }
     })
   }

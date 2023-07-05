@@ -6,6 +6,8 @@ import { CartService } from 'src/app/services/cart/cart.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { OrderService } from 'src/app/services/order/order.service';
 import { ProductService } from 'src/app/services/product.service';
+import { environment } from 'src/environments/environment';
+import { GetProductQuery } from 'src/response-interface/response';
 
 @Component({
   selector: 'app-product-details',
@@ -46,7 +48,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   quantityAfterAddedToCart: number;
 
-  private dataSubscription: Subscription;
+  public imageUrl = environment.imageUrl;
+
+  // private dataSubscription: Subscription;
+  data: Subscription;
+
   constructor(private _activeRoute: ActivatedRoute,
     private _productService: ProductService,
     private _cartService: CartService,
@@ -56,23 +62,30 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private _orderService: OrderService) {
     // this._router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
+  ngOnDestroy(): void {
+    console.log("This method is destroyed");
+    if(this.data)
+    { 
+      this.data.unsubscribe();
+    }
+  }
 
 
   ngOnInit(): void {
-
     this.productId = this._activeRoute.snapshot.paramMap.get('productId');
-
     this.getProduct();
   }
 
   getProduct() {
     if (this.productId != null) {
-      this.dataSubscription = this._productService.getProductById(this.productId).subscribe({
-        next: (res: any) => {
+    this.data = this._productService.getProductById(this.productId).subscribe({
+        next: (res: GetProductQuery) => {
+          console.log(res)  
           this.productData = res;
           this.productData.categories.forEach((category: any) => {
             this.categoryId.push(category.categoryId);
           });
+          console.log(this.categoryId)
         },
         error: err => {
           // this._toastrService.error("Something went wrong","Error")
@@ -115,12 +128,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.addCart(product);
     this._router.navigate(['/checkout'])
   }
-  ngOnDestroy(): void {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
 
-  }
 
 }
 

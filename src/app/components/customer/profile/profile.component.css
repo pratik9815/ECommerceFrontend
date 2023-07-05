@@ -85,3 +85,21 @@
     position: absolute;
     bottom: 0px;
 } */
+
+
+.tab{
+    margin-left: 10px;
+    border-radius: 4px;
+}
+.btn{
+    border: none;
+}
+.tab button:hover {
+    background-color: #ddd;
+  }
+.tab button.active{
+    background-color: rgb(132, 132, 207);
+}
+.tab-content{
+    margin-left: 20px;
+}

@@ -1,33 +1,33 @@
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="section-title ">
-                <span class="h2" style="border-bottom: 2px solid;">For You</span>
-            </div>
+        <div class="text-center">
+            <span class="productHeading text-center" >Recommended For You</span>
         </div>
     </div>
     <strong *ngIf="!randomProducts" class="ms-5">Loading......</strong>
 
     <div class="row">
-        <div class="col-3 mb-5 me-0" *ngFor="let item of randomProducts; let i = index" style="margin:0 60px 0 60px">
-            <div class="single-product">
-                <div class="product-f-image" style="height:fit-content; width:400px">
-                    <img class="img" src="{{item.imageLists.imageUrl}}" alt="" style="height:220px;width:fit-content">
+        <div class="col-3 mb-5 me-0 mt-2" *ngFor="let item of randomProducts; let i = index">
+            <div class="single-product" style="margin:0 10px 0 10px">
+                <div class="product-f-image photos">
+                    <img class="img" src="{{imageUrl + item.imageLists.imageName}}" alt="">
                     <div class="product-hover">
                         <a routerLink="product-details/{{item.id}}" class="view-details-link"><i class="fa fa-link"></i>
                             See details</a>
                     </div>
                 </div>
-                <div>
-                    <h2>{{item.name}}</h2>
-                    <div class="product-carousel-price">
-                        <ins>Rs: {{item.price}}</ins>
+                <div class="productDetails">
+                    <div class="text-center">
+                        <strong class=" product_text">{{item.name}}</strong>
+                        <div class="product-carousel-price">
+                            <ins>Rs: {{item.price}}</ins>
+                        </div>
+                        <i class="fa-solid fa-star" style="color:gold"></i>
+                        <i class="fa-solid fa-star" style="color:gold"></i>
+                        <i class="fa-solid fa-star" style="color:gold"></i>
+                        <i class="fa-solid fa-star" style="color:gold"></i>
+                        <i class="fa-solid fa-star"></i>
                     </div>
-                    <i class="fa-solid fa-star" style="color:gold"></i>
-                    <i class="fa-solid fa-star" style="color:gold"></i>
-                    <i class="fa-solid fa-star" style="color:gold"></i>
-                    <i class="fa-solid fa-star" style="color:gold"></i>
-                    <i class="fa-solid fa-star"></i>
                 </div>
 
             </div>

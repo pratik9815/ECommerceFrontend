@@ -1,27 +1,42 @@
-<div class="row" style="background-color: #b7c9c9;height:500px" *ngIf="slides">
-  <!-- <div class="col-sm-3">
-  </div> -->
+<div class="row" style="background-color: #e8f4f4;height:480px">
 
-  <div class="mt-2 mb-2"> 
-    <!-- <div class="mt-2 mb-2"> 
-    <div class="slide-container">
-      <ngb-carousel>
-        <ng-template ngbSlide *ngFor="let item of slides; index as i">
-          <div class="picsum-img-wrapper" style="height:fit-content; width:fit-content;margin:0 100px 0 100px ;">
-            <img [src]="item.url" alt="Random first slide" style="height:450px; width:100vw;">
+  <div>
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let item of slides; index as i">
+        <div class="picsum-img-wrapper">
+          <img src="{{item.url}}" alt="Random first slide" style="height:480px; width:100vw;">
+          <div class="content">
+            <h2>Content</h2>
+            <div class="content1">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia libero porro distinctio repellendus, culpa
+              illo quas, aliquam repellat commodi optio sed quibusdam tenetur placeat error neque obcaecati consequuntur
+              totam quod iusto! Tempore!
+            </div>
+            <button class="btn">See More</button>
           </div>
-        </ng-template>
-      </ngb-carousel> 
-    </div>  -->
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
 
-        <!-- , 'transform': getSlideTransform() -->
-    <div class="slider ms-5 me-5">
+
+  <!-- <div class="mb-2">
+    <div class="slider">
       <div>
         <div (click)="goToPrevious()" class="leftArrow">❰</div>
         <div (click)="goToNext()" class="rightArrow">❱</div>
       </div>
       <div class="side-container">
-        <div class="slide" [ngStyle]="{ 'background-image': getCurrentSlideUrl()}"  ></div>
+        <div class="slide" [ngStyle]="{ 'background-image': getCurrentSlideUrl()}"></div>
+        <div class="content">
+          <h2>Content</h2>
+          <div class="content1">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia libero porro distinctio repellendus, culpa
+            illo quas, aliquam repellat commodi optio sed quibusdam tenetur placeat error neque obcaecati consequuntur
+            totam quod iusto! Tempore!
+          </div>
+          <button class="btn">See More</button>
+        </div>
       </div>
       <div class="dotsContainer">
         <div *ngFor="let slide of slides; let slideIndex = index" class="dot" (click)="goToSlide(slideIndex)">
@@ -29,14 +44,20 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
+
+
+
 </div>
+
+
 <div class="random-products-wrapper">
   <app-popular-product-list></app-popular-product-list>
-  </div>
+</div>
 <hr>
 <div class="random-products-wrapper">
-<app-random-product-list></app-random-product-list>
+  <app-random-product-list></app-random-product-list>
 </div>
 <hr>
 <div class="product-list-wrapper">

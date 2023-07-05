@@ -10,6 +10,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ProfileComponent } from './components/customer/profile/profile.component';
 import { PlacedSuccessComponent } from './components/order/placed-success/placed-success.component';
 import { AuthGuard } from './guard/auth.guard';
+import { SubCategoryProductComponent } from './components/product/sub-category-product/sub-category-product.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'category-product',
     component:CategoryProductComponent
+  },
+  {
+    path: 'sub-category-product',
+    component:SubCategoryProductComponent
   },
   {
     path: 'signin',

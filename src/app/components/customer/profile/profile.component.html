@@ -48,48 +48,96 @@
     <!-- This is for the my orders  -->
 
     <div class="orders ">
-        <div class="fs-2 text-center mt-5" *ngIf="!order">
-            You do not have order history.<br>
-            <button class="btn btn-warning" routerLink="">Shop Now</button>
-        </div>
+        
 
         <div class="grid">
             <div class="purchase"></div>
             <div class="whished"></div>
         </div>
         <div *ngIf="order" style="width: 980px;">
-            <h3 class="ms-3 mt-4">Purchase History</h3>
-            <table class="table ms-3 mt-4" >
-                <thead>
-                    <tr>
-                        <th style="width: 20px">S.N</th>
-                        <th style="width: 200px">Order Id</th>
-                        <th style="width: 100px">Order date</th>
-                        <th style="width: 20px;">Total Amount(Rs.)</th>
-                        <th style="width:50px">Status</th>
-                        <th style="width:100px">Actions</th>
-                    </tr>
-                </thead>
-                <tbody *ngFor="let item of order; let i = index">
-                    <tr>
-                        <td>{{i+1}}</td>
-                        <td>{{item.id}}</td>
-                        <td>{{item.orderDate | date:'dd MMM yyyy'}}</td>
-                        <td>{{item.amount}}</td>
-                        <td>{{OrderStatus[item.orderStatus].name}}</td>
-                        <td>
-                            <!-- <button class="btn btn-danger" (click)="removeOrder(item.id)"><i class="fa fa-trash" (click)="removeOrder(item.id)"></i></button>&nbsp; &nbsp; -->
-                            <button class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal" (click)="getId(item.id)"><i
-                                    class="fa fa-trash"></i></button>&nbsp; &nbsp;
-                            <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
-                                <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
-                            </button>
-                        </td>
+            <h3 class="ms-3 mt-4 h3" style="border-bottom: 1px solid; width:200px">Purchase History</h3>
 
-                    </tr>
-                </tbody>
-            </table>
+            <div class="tab">
+                <button class="tablinks btn " [class.active]="selectedTab === 'tab1'" (click)="selectTab('tab1')">My Orders</button>
+                <button class="tablinks btn ms-2" [class.active]="selectedTab === 'tab2'" (click)="selectTab('tab2')">Completed orders</button>
+                <button class="tablinks btn ms-2" [class.active]="selectedTab === 'tab3'" (click)="selectTab('tab3')">Third</button>
+            </div>
+            <div class="tab-content">
+                <div *ngIf="selectedTab === 'tab1'">   
+                    <table class="table ms-3 mt-4" >
+                        <thead>
+                            <tr>
+                                <th style="width: 20px">S.N</th>
+                                <th style="width: 200px">Order Id</th>
+                                <th style="width: 100px">Order date</th>
+                                <th style="width: 20px;">Total Amount(Rs.)</th>
+                                <th style="width:50px">Status</th>
+                                <th style="width:100px">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of order; let i = index">
+                            <tr>
+                                <td>{{i+1}}</td>
+                                <td>{{item.id}}</td>
+                                <td>{{item.orderDate | date:'dd MMM yyyy'}}</td>
+                                <td>{{item.amount}}</td>
+                                <td>{{OrderStatus[item.orderStatus].name}}</td>
+                                <td>
+                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal" (click)="getId(item.id)"><i
+                                            class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                                    <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
+                                        <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
+                                    </button>
+                                </td>
+        
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div *ngIf="selectedTab === 'tab2'">
+                    <table class="table ms-3 mt-4" >
+                        <thead>
+                            <tr>
+                                <th style="width: 20px">S.N</th>
+                                <th style="width: 200px">Order Id</th>
+                                <th style="width: 100px">Order date</th>
+                                <th style="width: 20px;">Total Amount(Rs.)</th>
+                                <th style="width:50px">Status</th>
+                                <th style="width:100px">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of order; let i = index">
+                            <tr>
+                                <td>{{i+1}}</td>
+                                <td>{{item.id}}</td>
+                                <td>{{item.orderDate | date:'dd MMM yyyy'}}</td>
+                                <td>{{item.amount}}</td>
+                                <td>{{OrderStatus[item.orderStatus].name}}</td>
+                                <td>
+                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal" (click)="getId(item.id)"><i
+                                            class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                                    <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
+                                        <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
+                                    </button>
+                                </td>
+        
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="selectedTab === 'tab3'">Content for Tab 3</div>
+
+
+            </div>
+            <div class="fs-2 text-center mt-5" *ngIf="!order">
+                You do not have order history.<br>
+                <button class="btn btn-warning" routerLink="">Shop Now</button>
+            </div>
+
         </div>
 
         <div class="modal fade show" role="dialog" *ngIf="orderDetailsPopUpModal" id="orderDetailsModal"

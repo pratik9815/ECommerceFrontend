@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-category-product',
@@ -12,6 +13,7 @@ export class CategoryProductComponent implements OnInit {
   categoryId: any;
   totalPages: number = 0;
   count:number = 1;
+  public imageUrl = environment.imageUrl;
   constructor(private _categoryService: CategoryService,
     private _activeRoute: ActivatedRoute) { }
 
@@ -28,8 +30,8 @@ export class CategoryProductComponent implements OnInit {
     if (this.categoryId) {
       this._categoryService.getProductWithCategory(this.categoryId,count).subscribe({
         next: (res:any) => {
-          console.log(res);
-          console.log(res.product)
+
+          // console.log(res.product)
           this.productList = res.product;
           this.totalPages = res.totalPage;
         }

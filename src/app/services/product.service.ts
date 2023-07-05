@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GetProductQuery } from 'src/response-interface/response';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +11,11 @@ export class ProductService {
 
   constructor(private _httpClient:HttpClient) { }
 
-  getProducts()
+  getProducts() 
   {
     return this._httpClient.get(this.apiUrl+"get-images-with-all-images");
   }
-  getProductById(id:any)
+  getProductById(id:any): Observable<GetProductQuery>
   {
     return this._httpClient.get(this.apiUrl+"getbyid/"+id);
   }
@@ -30,5 +32,10 @@ export class ProductService {
   getPopularProduct()
   {
     return this._httpClient.get(this.apiUrl+'get-popular-product');
+  }
+
+  getProductWithSubCategory(subCategoryId:any,count:any)
+  {
+    return this._httpClient.get(this.apiUrl+'get-product-with-subCategory?subCategoryId='+subCategoryId + '&page='+count);
   }
 }

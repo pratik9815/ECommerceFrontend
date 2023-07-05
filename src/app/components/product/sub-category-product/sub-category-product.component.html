@@ -4,7 +4,7 @@
 
 <div *ngIf="totalPages > 0 && productList">
     <div class="h3 ms-3 pt-2">
-        {{productList[0].categoryName}}
+        {{productList[0].subCategoryName}}
     </div>
     <div class="m-4">
         <div class="row" *ngFor="let item of productList; let i = index" style="margin:0 60px 0 60px">
@@ -13,7 +13,7 @@
                     <img class="img" src="{{imageUrl + item.img.imageName}}" alt="" style="max-height:250px;">
                     <div class="product-hover">
                         <!-- <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a> -->
-                        <a routerLink="/product-details/{{item.id}}" class="view-details-link"><i
+                        <a routerLink="/product-details/{{item.id}}"  class="view-details-link"><i
                                 class="fa fa-link"></i> See details</a>
                     </div>
                 </div>
@@ -31,9 +31,9 @@
             </div>
         </div>
     </div>
-    <div class="mb-3 d-flex justify-content-center">
-        <div class="me-2" *ngFor="let item of [].constructor(totalPages); let i = index">
-            <button (click)="getProductWithCategory(i+1)">{{i + 1}}</button>
+            <div class="mb-3 d-flex justify-content-center">
+            <div class="me-2" *ngFor="let item of [].constructor(totalPages); let i = index">
+                <button (click)="getProductWithSubCategory(i+1)" >{{i + 1}}</button>
+            </div>
         </div>
-    </div>
 </div>

@@ -1,7 +1,4 @@
-.single-product{
-    width: 365px;
-    height: 320px;
-}
+
 a{
     text-decoration: none;
 }
@@ -15,4 +12,9 @@ button{
     border-radius: 50px;
     border:2px solid rgb(191, 191, 235);
     padding:8px 15px;
+}
+.productDetails{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

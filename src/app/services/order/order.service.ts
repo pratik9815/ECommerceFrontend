@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,12 +13,21 @@ export class OrderService {
   {
     return this._httpClient.post(this.apiUrl + 'create-orders',orderBody);
   }
-  getOrder(id:any)
+  getOrder(id:any,page:any, orderStatus:any)
   {
-    return this._httpClient.get(this.apiUrl+ 'get-by-id?customerId=' + id);
+    let queryParams = {
+      "customerId": id,
+      "page": page,
+      "orderStatus": orderStatus
+    };
+    // let queryParams = new HttpParams({fromObject: parameters})
+    return this._httpClient.get(this.apiUrl+ 'get-by-id' , {params:queryParams})
   }
   getOrderDetails(customerId:any)
   {
+    const body = {
+
+    }
     return this._httpClient.get(this.apiUrl + "get-order-details?customerId=" + customerId)
   }
   removeOrder(id:any)

@@ -5,13 +5,13 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
 
   productDetailsPage: boolean = false
-  // image: any;
-  // slides: any[]; 
+
+  
   currentIndex: number = 0;
   timeoutId?: number;
 
