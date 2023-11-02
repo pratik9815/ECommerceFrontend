@@ -11,6 +11,7 @@ import { ProfileComponent } from './components/customer/profile/profile.componen
 import { PlacedSuccessComponent } from './components/order/placed-success/placed-success.component';
 import { AuthGuard } from './guard/auth.guard';
 import { SubCategoryProductComponent } from './components/product/sub-category-product/sub-category-product.component';
+import { UpdateProfileComponent } from './components/customer/update-profile/update-profile.component';
 
 
 const routes: Routes = [
@@ -60,7 +61,13 @@ const routes: Routes = [
     path: 'order-success',
     component: PlacedSuccessComponent,
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'update-profile',
+    component:UpdateProfileComponent,
+    canActivate:[AuthGuard]
   }
+
 
 ];
 

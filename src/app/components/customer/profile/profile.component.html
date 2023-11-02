@@ -1,10 +1,10 @@
 <h2 class="text-center mt-2"><b>Your Profile</b></h2>
-<div class="d-flex mt-2 justify-content-center">
+<div class=" container d-flex mt-2 justify-content-center">
     <div class="profile">
         <!-- <h2 class="ms-3 text-center"><b>Your Profile</b></h2> -->
         <div class="row" *ngIf="userInfo">
             <div class="img-container  mb-5">
-                This is a image container.
+                <img class="photos" src="assets\images\user.jpg" alt="This is an avatar">
             </div>
             <div class="userContainer">
                 <h3 class="text-center mt-1">Your Information</h3>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="row mb-2" style="margin-right: 30px;">
-                <button class="btn btn-primary col-sm-4">Update details</button>
+                <button class="btn btn-primary col-sm-4" routerLink="/update-profile">Update details</button>
                 <button class="btn btn-warning ms-2 col-sm-5">Change Password</button>
             </div>
 
@@ -59,20 +59,20 @@
 
             <div class="tab">
                 <button class="tablinks btn " [class.active]="selectedTab === 'tab1'" (click)="selectTab('tab1')">My Orders</button>
+                <button class="tablinks btn ms-2" [class.active]="selectedTab === 'tab3'" (click)="selectTab('tab3')">Processing Orders</button>
                 <button class="tablinks btn ms-2" [class.active]="selectedTab === 'tab2'" (click)="selectTab('tab2')">Completed orders</button>
-                <button class="tablinks btn ms-2" [class.active]="selectedTab === 'tab3'" (click)="selectTab('tab3')">Third</button>
             </div>
-            <div class="tab-content">
+            <div class="tab-content" style="width:900px">
                 <div *ngIf="selectedTab === 'tab1'">   
-                    <table class="table ms-3 mt-4" >
+                    <table class="table ms-0 mt-4" >
                         <thead>
                             <tr>
-                                <th style="width: 20px">S.N</th>
+                                <th style="width: 10px">S.N</th>
                                 <th style="width: 200px">Order Id</th>
-                                <th style="width: 100px">Order date</th>
-                                <th style="width: 20px;">Total Amount(Rs.)</th>
-                                <th style="width:50px">Status</th>
-                                <th style="width:100px">Actions</th>
+                                <th style="width: 74px">Order date</th>
+                                <th style="width: 50px;">Total Amount(Rs.)</th>
+                                <th style="width: 50px">Status</th>
+                                <th style="width: 100px">Actions</th>
                             </tr>
                         </thead>
                         <tbody *ngFor="let item of order; let i = index">
@@ -84,8 +84,40 @@
                                 <td>{{OrderStatus[item.orderStatus].name}}</td>
                                 <td>
                                     <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal" (click)="getId(item.id)">
+                                        <i class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                                    <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
+                                        <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="selectedTab === 'tab3'">
+                    <table class="table ms-0 mt-4" >
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">S.N</th>
+                                <th style="width: 225px">Order Id</th>
+                                <th style="width: 74px">Order date</th>
+                                <th style="width: 50px;">Total Amount(Rs.)</th>
+                                <th style="width: 50px">Status</th>
+                                <th style="width: 50px">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of order; let i = index">
+                            <tr>
+                                <td>{{i+1}}</td>
+                                <td>{{item.id}}</td>
+                                <td>{{item.orderDate | date:'dd MMM yyyy'}}</td>
+                                <td>{{item.amount}}</td>
+                                <td>{{OrderStatus[item.orderStatus].name}}</td>
+                                <td>
+                                    <!-- <button class="btn btn-danger" type="button" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal" (click)="getId(item.id)"><i
-                                            class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                                            class="fa fa-trash"></i></button>&nbsp; &nbsp; -->
                                     <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
                                         <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
                                     </button>
@@ -98,15 +130,15 @@
 
 
                 <div *ngIf="selectedTab === 'tab2'">
-                    <table class="table ms-3 mt-4" >
+                    <table class="table ms-0 mt-4">
                         <thead>
                             <tr>
-                                <th style="width: 20px">S.N</th>
-                                <th style="width: 200px">Order Id</th>
-                                <th style="width: 100px">Order date</th>
-                                <th style="width: 20px;">Total Amount(Rs.)</th>
-                                <th style="width:50px">Status</th>
-                                <th style="width:100px">Actions</th>
+                                <th style="width: 10px">S.N</th>
+                                <th style="width: 225px">Order Id</th>
+                                <th style="width: 74px">Order date</th>
+                                <th style="width: 50px;">Total Amount(Rs.)</th>
+                                <th style="width: 50px">Status</th>
+                                <th style="width: 50px">Actions</th>
                             </tr>
                         </thead>
                         <tbody *ngFor="let item of order; let i = index">
@@ -117,9 +149,9 @@
                                 <td>{{item.amount}}</td>
                                 <td>{{OrderStatus[item.orderStatus].name}}</td>
                                 <td>
-                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                    <!-- <button class="btn btn-danger" type="button" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal" (click)="getId(item.id)"><i
-                                            class="fa fa-trash"></i></button>&nbsp; &nbsp;
+                                            class="fa fa-trash"></i></button>&nbsp; &nbsp; -->
                                     <button class="btn btn-primary" (click)="onDetails(item.orderDetails)">
                                         <i class="fa fa-eye" (click)="onDetails(item.orderDetails)"></i>
                                     </button>
@@ -129,7 +161,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div *ngIf="selectedTab === 'tab3'">Content for Tab 3</div>
 
 
             </div>

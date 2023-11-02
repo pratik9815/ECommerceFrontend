@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { UserInfo } from 'os';
 import { AuthService, CustomerInfo } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
+import { UpdateUserCommand } from 'src/app/services/interfaces';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-profile',
@@ -45,14 +47,20 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private _orderService:OrderService, private _authService:AuthService,
-              private _toastrService:ToastrService) { 
+              private _toastrService:ToastrService,private _customerService:CustomerService) { 
     
   }
 
   ngOnInit(): void {
     this.customerId = this._authService.user.customerId;
-    this.userInfo = this._authService.user;
-    console.log(this.userInfo)
+    this._customerService.getCustomerById(this.customerId).subscribe({
+      next: (res:any) =>{
+        this.userInfo = res;
+      },
+      error: (err:any) => {
+        console.log(err);
+      }
+    });
     if(this.customerId){
       this.getOrders(this.customerId);
     }
@@ -68,11 +76,14 @@ export class ProfileComponent implements OnInit {
     {
       this.orderStatus = OrderStatus.OrderDelivered;
     }
+    if(tabName == 'tab3')
+    {
+      this.orderStatus = OrderStatus.OrderProcessing;
+    }
     this.selectedTab = tabName;
     this._orderService.getOrder(this.customerId,1,this.orderStatus).subscribe({
       next: res =>{
         this.order = res;
-        console.log(res)
       }
     });
   }
@@ -114,7 +125,17 @@ export class ProfileComponent implements OnInit {
   getId(id:any)
   {
     this.orderId = id;
-    console.log(this.orderId)
+    // console.log(this.orderId)
+  }
+
+
+
+  onUpdateCustomerDetails(customerInfo: UpdateUserCommand)
+  {
+    //  let updatedUser : UpdateUserCommand
+
+    
+
   }
 
 }

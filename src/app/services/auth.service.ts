@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
 import { error } from 'console';
+import { UpdateUserCommand } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -116,7 +117,16 @@ export class AuthService {
 
 
 
+
+  onUpdateUser(user:UpdateUserCommand)
+  {
+    return this._httpClient.put(this.apiUrl+'update-user',user);
+  }
+
 }
+
+
+
 export class CustomerInfo {
   userName?: string | undefined;
   fullName?: string | undefined;

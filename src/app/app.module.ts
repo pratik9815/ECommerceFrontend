@@ -34,6 +34,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RandomProductListComponent } from './components/home/random-product-list/random-product-list.component';
 import { PopularProductListComponent } from './components/home/popular-product-list/popular-product-list.component';
 import { SubCategoryProductComponent } from './components/product/sub-category-product/sub-category-product.component';
+import { UpdateProfileComponent } from './components/customer/update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SubCategoryProductComponent } from './components/product/sub-category-p
     RandomProductListComponent,
     PopularProductListComponent,
     SubCategoryProductComponent,
+    UpdateProfileComponent
 
   ],
   imports: [

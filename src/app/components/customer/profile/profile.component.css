@@ -1,13 +1,11 @@
 .profile{
     width: 400px;
-    border: 3px solid rgb(188, 184, 184);
     background-color: white;
     height: fit-content;
 }
 
 .img-container{
-    margin-top: 20px;
-    background-color:rgb(206, 199, 199);
+    margin-top: 30px;
     width: 340px;
     height: 280px;
 }
@@ -21,8 +19,8 @@
 .userContainer{
     width: 340px;
     margin-bottom:20px;
-    border: 2px solid rgb(188, 184, 184);
     padding: 0;
+    border: 2px solid rgb(188, 184, 184);
 }
 
 
@@ -52,9 +50,9 @@
 
 
 .orders{
-    width: 1000px;
-    margin-left: 40px;
-    border: 3px solid rgb(188, 184, 184);
+    width: 900px;
+    margin-left: 20px;
+    /* border: 3px solid rgb(188, 184, 184); */
     background-color:white ;
 }
 
@@ -64,27 +62,16 @@
 }
 .purchase{
     margin: 30px 20px 0 20px;
-    height: 260px;
-    background-color: rgba(0, 47, 255, 0.4);
+    height: 280px;
+    background-image: linear-gradient(45deg, rgb(28 174 0), rgb(117, 155, 155));
+    
 }
 
 .whished{
     margin: 30px 20px 0 20px;
-    height: 260px;
+    height: 280px;
     background-color: rgba(255, 0, 0, 0.4);
 }
-
-
-/* This is to make the content display bottom of the div */
-/* .buttonClass{
-    padding-top: 10px;
-    background-color:aqua ;
-    position: relative;
-}
-.bottomClass{
-    position: absolute;
-    bottom: 0px;
-} */
 
 
 .tab{
@@ -98,7 +85,7 @@
     background-color: #ddd;
   }
 .tab button.active{
-    background-color: rgb(132, 132, 207);
+    background-color: #ddd;
 }
 .tab-content{
     margin-left: 20px;

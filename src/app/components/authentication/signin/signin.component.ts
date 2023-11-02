@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { Gender } from 'src/app/services/interfaces';
 
 @Component({
   selector: 'app-signin',
@@ -93,6 +94,6 @@ export class SigninComponent implements OnInit {
   }
 }
 
-export enum Gender{
- male= 0,female = 1,other = 2
-}
+// export enum   Gender{
+//  male= 0,female = 1,other = 2
+// }

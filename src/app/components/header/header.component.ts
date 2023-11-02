@@ -62,7 +62,6 @@ export class HeaderComponent implements OnInit {
     });
   }
   onChange(e: any) {
-    console.log(e)
     this.isSelected = !!e;
     if (this.isSelected) {
       this._router.navigate(['category-product'], { queryParams: { value: e.id } })
@@ -74,8 +73,8 @@ export class HeaderComponent implements OnInit {
     this._categoryService.getCategoryWithSubCategory().subscribe({ 
       next: (res:any) => {
         this.categoryListWithSubCategory = res;
-        console.log(this.categoryListWithSubCategory)
-        console.log(this.categoryListWithSubCategory)
+        // console.log(this.categoryListWithSubCategory)
+        // console.log(this.categoryListWithSubCategory)
       }
     });
   }

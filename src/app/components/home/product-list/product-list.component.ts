@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit,OnDestroy {
+
+  
   productData:any;
   product : any;
   count: number = 1;
