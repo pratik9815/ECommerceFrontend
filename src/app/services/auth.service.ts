@@ -115,12 +115,14 @@ export class AuthService {
     return date;
   }
 
-
-
-
   onUpdateUser(user:UpdateUserCommand)
   {
     return this._httpClient.put(this.apiUrl+'update-user',user);
+  }
+
+  onChangePassword(request:any)
+  {
+    return this._httpClient.post(this.apiUrl+ 'change-password',request)
   }
 
 }

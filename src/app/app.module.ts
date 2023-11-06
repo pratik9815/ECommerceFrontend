@@ -35,6 +35,7 @@ import { RandomProductListComponent } from './components/home/random-product-lis
 import { PopularProductListComponent } from './components/home/popular-product-list/popular-product-list.component';
 import { SubCategoryProductComponent } from './components/product/sub-category-product/sub-category-product.component';
 import { UpdateProfileComponent } from './components/customer/update-profile/update-profile.component';
+import { ChangePasswordComponent } from './components/customer/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UpdateProfileComponent } from './components/customer/update-profile/upd
     RandomProductListComponent,
     PopularProductListComponent,
     SubCategoryProductComponent,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    ChangePasswordComponent
 
   ],
   imports: [

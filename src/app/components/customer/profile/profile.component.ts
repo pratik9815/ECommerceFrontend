@@ -42,9 +42,7 @@ export class ProfileComponent implements OnInit {
       id: OrderStatus.OrderDelivered,
       name:"OrderDelivered",
     },
-
   ]
-
 
   constructor(private _orderService:OrderService, private _authService:AuthService,
               private _toastrService:ToastrService,private _customerService:CustomerService) { 

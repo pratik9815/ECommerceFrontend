@@ -12,6 +12,7 @@ import { PlacedSuccessComponent } from './components/order/placed-success/placed
 import { AuthGuard } from './guard/auth.guard';
 import { SubCategoryProductComponent } from './components/product/sub-category-product/sub-category-product.component';
 import { UpdateProfileComponent } from './components/customer/update-profile/update-profile.component';
+import { ChangePasswordComponent } from './components/customer/change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -66,8 +67,11 @@ const routes: Routes = [
     path: 'update-profile',
     component:UpdateProfileComponent,
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
   }
-
 
 ];
 
